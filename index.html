@@ -51,6 +51,22 @@
     .menu-item:hover .dropdown-content {
         display: block;
     }
+    /* EFECTO DE ELEVACIÓN PARA TODAS LAS TARJETAS */
+.tarjeta-animada {
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    cursor: pointer;
+}
+
+.tarjeta-animada:hover {
+    transform: translateY(-10px); /* Se eleva 10 píxeles */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2) !important; /* Sombra más profunda */
+}
+
+/* EFECTO PARA LOS BOTONES */
+a:hover {
+    filter: brightness(1.2); /* Brilla un poco al pasar el mouse */
+    transition: 0.3s;
+}
     </style>
 </head>
 <body>
@@ -116,7 +132,7 @@
         transition: 0.3s;
     }
     .menu-item a:hover {
-        background: #004080;
+        background-color: #800000;
     }
     html { scroll-behavior: smooth; }
 </style>
