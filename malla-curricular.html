@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Académico | Mi Carrera</title>
+    <style>
+        /* Estilos Elegantes y Profesionales */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f4f7f9; color: #333; }
+        header { background: #003366; color: white; padding: 2rem; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        nav { background: #002244; padding: 10px; text-align: center; position: sticky; top: 0; z-index: 1000; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 20px; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-left: 5px solid #003366; margin-bottom: 20px; }
+        h2 { color: #003366; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .welcome-section { display: flex; align-items: center; gap: 20px; }
+        .btn-ia { background: #007bff; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; display: inline-block; transition: 0.3s; margin-top: 15px; }
+        .btn-ia:hover { background: #0056b3; transform: scale(1.05); }
+        footer { text-align: center; padding: 40px; color: #777; font-size: 0.8rem; }
+    /* Estilo para el contenedor del menú */
+    .menu-item {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Estilo para la lista desplegable (oculta por defecto) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #002855; /* Mismo azul que el menú */
+        min-width: 200px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    /* Estilo de los enlaces dentro del desplegable */
+    .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 13px;
+    }
+
+    /* Cambio de color al pasar el mouse por las opciones */
+    .dropdown-content a:hover {
+        background-color: #004080;
+    }
+
+    /* MOSTRAR el menú al pasar el mouse */
+    .menu-item:hover .dropdown-content {
+        display: block;
+    }
+    </style>
+</head>
+<body>
+<div id="inicio-top" style="background: white; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center;">
+    <img src="LAELLOGO.PNG.png" alt="Logo LAEL" style="height: 60px;">
+
+</div>
+
+<nav style="background: #002855; padding: 0 50px; display: flex; justify-content: center; position: sticky; top: 0; z-index: 1000;">
+    <ul style="list-style: none; display: flex; margin: 0; padding: 0; gap: 20px;">
+    <li class="menu-item"><a href="index.html" style="color: white; text-decoration: none; font-weight: 600;">Inicio</a></li>
+    <li class="menu-item"><a href="carrera.html" style="color: white; text-decoration: none; font-weight: 600;">Carrera</a></li>
+    <li class="menu-item"><a href="pregrado.html" style="color: white; text-decoration: none; font-weight: 600;">Pregrado</a></li>
+    <li class="menu-item"><a href="https://posgrado.hum.umss.edu.bo/" target="_blank" style="color: white; text-decoration: none; font-weight: 600;">Posgrado</a></li>
+    <li class="menu-item"><a href="servicios.html" style="color: white; text-decoration: none; font-weight: 600;">Servicios Carrera</a></li>
+    <li class="menu-item"><a href="plataformas.html" style="color: white; text-decoration: none; font-weight: 600;">Plataformas</a></li>
+    <li class="menu-item"><a href="contacto.html" style="color: white; text-decoration: none; font-weight: 600;">Contacto</a></li>
+</ul>
+</nav>
+<div style="
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('logocarrera.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    height: 250px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    color: white;">
+    
+    <h1 style="font-size: 45px; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Carrera de LAEL</h1>
+    
+</div>
+     
+</div>
+<style>
+    .menu-item a {
+        color: white;
+        text-decoration: none;
+        padding: 15px 20px;
+        display: block;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .menu-item a:hover {
+        background-color: #800000;
+    }
+    html { scroll-behavior: smooth; }
+</style>
+<header>
+</header>
+
+<div class="container" style="padding: 20px; margin-top: 30px; font-family: 'Segoe UI', sans-serif; text-align: center;">
+    
+    <div style="margin-bottom: 40px;">
+        <h2 style="color: #002855; font-size: 32px; font-weight: 800;">Plan de Estudios</h2>
+        <div style="width: 60px; height: 4px; background: #800000; margin: 10px auto;"></div>
+        <p style="color: #666;">Visualiza y descarga la malla curricular actualizada de la carrera.</p>
+    </div>
+
+    <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: inline-block; max-width: 90%; margin-bottom: 40px;">
+        <img src="malla.jpg" alt="Malla Curricular" style="width: 100%; height: auto; border-radius: 10px; border: 1px solid #ddd;">
+    </div>
+
+    <div style="margin-bottom: 60px;">
+        <p style="font-weight: bold; color: #333;">¿Necesitas el documento oficial?</p>
+        <a href="malla.pdf" download="Malla_Curricular_Linguistica" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; background: #800000; color: white; padding: 15px 30px; border-radius: 50px; font-weight: bold; transition: 0.3s; box-shadow: 0 5px 15px rgba(128,0,0,0.3);">
+            <span style="font-size: 20px;">📥</span> Descargar Malla en PDF
+        </a>
+    </div>
+
+</div>
+
+<footer style="background-color: #002855; color: white; padding: 30px 0 15px 0; margin-top: 30px; font-family: 'Segoe UI', sans-serif; border-top: 4px solid #800000;">
+    <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; padding: 0 20px; gap: 30px;">
+        
+        <div style="flex: 1; min-width: 250px; text-align: center;">
+            <h3 style="color: #ffffff; margin: 0 0 10px 0; font-size: 18px; font-weight: bold;">LAEL - UMSS</h3>
+            <p style="color: #bdc3c7; font-size: 13px; line-height: 1.4; margin: 0;">
+                Excelencia académica en la formación de profesionales en lenguas.
+            </p>
+        </div>
+
+        <div style="flex: 1; min-width: 200px; text-align: center;">
+            <h4 style="color: #ffffff; margin: 0 0 10px 0; font-size: 15px;">Enlaces</h4>
+            <div style="display: flex; flex-direction: column; gap: 5px; font-size: 13px;">
+                <a href="index.html" style="color: #bdc3c7; text-decoration: none;">Inicio</a>
+                <a href="carrera.html" style="color: #bdc3c7; text-decoration: none;">Carrera</a>
+                <a href="servicios.html" style="color: #bdc3c7; text-decoration: none;">Servicios</a>
+                <a href="contacto.html" style="color: #bdc3c7; text-decoration: none;">Contacto</a>
+            </div>
+        </div>
+
+        <div style="flex: 1; min-width: 250px; text-align: center;">
+            <h4 style="color: #ffffff; margin: 0 0 10px 0; font-size: 15px;">Información</h4>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                <div style="color: #bdc3c7; font-size: 13px;">
+                    <span style="color: #800000;">📍</span> Plazuela Sucre, Humanidades
+                </div>
+                <div style="color: #bdc3c7; font-size: 13px;">
+                    <span style="color: #800000;">📞</span> (+591) 4 4544102
+                </div>
+                <a href="https://www.facebook.com/groups/610772039133959/" target="_blank" style="text-decoration: none; display: flex; align-items: center; gap: 5px; color: #bdc3c7; font-size: 13px;">
+                    <span style="background: #1877F2; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; border-radius: 3px; font-size: 9px; color: white;">f</span> Facebook
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; padding-top: 10px; text-align: center;">
+        <p style="color: #666; font-size: 11px; margin: 0;">
+            &copy; 2026 UNIVERSIDAD MAYOR DE SAN SIMÓN.
+        </p>
+    </div>
+</footer>
+<!-- Load the widget -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/biel-search/dist/biel-search/biel-search.css">
+<script type="module" src="https://cdn.jsdelivr.net/npm/biel-search/dist/biel-search/biel-search.esm.js"></script>
+
+<!-- Add the widget -->
+<biel-button
+    project="g9bu49iac3"
+    header-title="Biel.ai Chatbot"
+    button-position="bottom-right"
+    modal-position="sidebar-right"
+    button-style="dark">
+    Ask AI
+</biel-button>
+</body>
+</html>

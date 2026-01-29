@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Académico | Mi Carrera</title>
+    <style>
+        /* Estilos Elegantes y Profesionales */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f4f7f9; color: #333; }
+        header { background: #003366; color: white; padding: 2rem; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        nav { background: #002244; padding: 10px; text-align: center; position: sticky; top: 0; z-index: 1000; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 20px; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-left: 5px solid #003366; margin-bottom: 20px; }
+        h2 { color: #003366; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .welcome-section { display: flex; align-items: center; gap: 20px; }
+        .btn-ia { background: #007bff; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; display: inline-block; transition: 0.3s; margin-top: 15px; }
+        .btn-ia:hover { background: #0056b3; transform: scale(1.05); }
+        footer { text-align: center; padding: 40px; color: #777; font-size: 0.8rem; }
+    /* Estilo para el contenedor del menú */
+    .menu-item {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Estilo para la lista desplegable (oculta por defecto) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #002855; /* Mismo azul que el menú */
+        min-width: 200px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    /* Estilo de los enlaces dentro del desplegable */
+    .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 13px;
+    }
+
+    /* Cambio de color al pasar el mouse por las opciones */
+    .dropdown-content a:hover {
+        background-color: #004080;
+    }
+
+    /* MOSTRAR el menú al pasar el mouse */
+    .menu-item:hover .dropdown-content {
+        display: block;
+    }
+    </style>
+</head>
+<body>
+<div id="inicio-top" style="background: white; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center;">
+    <img src="LAELLOGO.PNG.png" alt="Logo LAEL" style="height: 60px;">
+
+</div>
+
+<nav style="background: #002855; padding: 0 50px; display: flex; justify-content: center; position: sticky; top: 0; z-index: 1000;">
+    <ul style="list-style: none; display: flex; margin: 0; padding: 0; gap: 20px;">
+    <li class="menu-item"><a href="index.html" style="color: white; text-decoration: none; font-weight: 600;">Inicio</a></li>
+    <li class="menu-item"><a href="carrera.html" style="color: white; text-decoration: none; font-weight: 600;">Carrera</a></li>
+    <li class="menu-item"><a href="pregrado.html" style="color: white; text-decoration: none; font-weight: 600;">Pregrado</a></li>
+    <li class="menu-item"><a href="https://posgrado.hum.umss.edu.bo/" target="_blank" style="color: white; text-decoration: none; font-weight: 600;">Posgrado</a></li>
+    <li class="menu-item"><a href="servicios.html" style="color: white; text-decoration: none; font-weight: 600;">Servicios Carrera</a></li>
+    <li class="menu-item"><a href="plataformas.html" style="color: white; text-decoration: none; font-weight: 600;">Plataformas</a></li>
+    <li class="menu-item"><a href="contacto.html" style="color: white; text-decoration: none; font-weight: 600;">Contacto</a></li>
+</ul>
+</nav>
+<div style="
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('logocarrera.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    height: 250px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    color: white;">
+    
+    <h1 style="font-size: 45px; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Carrera de LAEL</h1>
+    
+</div>
+     
+</div>
+<style>
+    .menu-item a {
+        color: white;
+        text-decoration: none;
+        padding: 15px 20px;
+        display: block;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .menu-item a:hover {
+        background-color: #800000;
+    }
+    html { scroll-behavior: smooth; }
+</style>
+<header>
+</header>
+
+<style>
+    /* Estilo para la elevación (Lupa) */
+    .modalidad-card-container {
+        perspective: 1000px;
+        width: 280px;
+        height: 380px;
+        transition: transform 0.4s ease;
+        cursor: pointer;
+    }
+    
+    /* El efecto lupa al pasar el ratón */
+    .modalidad-card-container:hover {
+        transform: scale(1.1);
+        z-index: 100;
+    }
+
+    /* Contenedor del giro */
+    .card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+    /* Clase que activaremos con JavaScript para girar */
+    .card-inner.is-flipped {
+        transform: rotateY(180deg);
+    }
+
+    /* Caras de la carta */
+    .card-front, .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        box-sizing: border-box;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    /* Cara frontal (Azul o Guindo) */
+    .card-front {
+        background-color: white;
+        border-bottom: 6px solid #002855;
+    }
+
+    /* Cara trasera (Información) */
+    .card-back {
+        background-color: #f8f9fa;
+        color: #333;
+        transform: rotateY(180deg);
+        border-bottom: 6px solid #800000;
+    }
+</style>
+
+<div class="container" style="padding: 20px; margin-top: 30px; font-family: 'Segoe UI', sans-serif;">
+    
+    <div style="text-align: center; margin-bottom: 50px;">
+        <h2 style="color: #002855; font-size: 32px; font-weight: 800;">Modalidades de Titulación</h2>
+        <div style="width: 60px; height: 4px; background: #800000; margin: 10px auto;"></div>
+        <p style="color: #666;">Haz clic en cada tarjeta para ver los detalles del proceso.</p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+
+        <div class="modalidad-card-container" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front">
+                    <div style="font-size: 70px; margin-bottom: 15px;">📚</div>
+                    <h3 style="color: #002855;">Tesis de Grado</h3>
+                    <p style="color: #888; font-size: 14px;">Investigación científica profunda</p>
+                </div>
+                <div class="card-back">
+                    <h4 style="color: #800000;">Detalles</h4>
+                    <p style="font-size: 14px; line-height: 1.5;">Trabajo de investigación escrito que propone una hipótesis sobre un tema lingüístico específico. Requiere tutor y defensa ante tribunal.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="modalidad-card-container" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front">
+                    <div style="font-size: 70px; margin-bottom: 15px;">📊</div>
+                    <h3 style="color: #002855;">Proyecto de Grado</h3>
+                    <p style="color: #888; font-size: 14px;">Aplicación práctica técnica</p>
+                </div>
+                <div class="card-back">
+                    <h4 style="color: #800000;">Detalles</h4>
+                    <p style="font-size: 14px; line-height: 1.5;">Desarrollo de una propuesta práctica o técnica para resolver un problema específico en el área de lenguas o educación.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="modalidad-card-container" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front">
+                    <div style="font-size: 70px; margin-bottom: 15px;">⭐</div>
+                    <h3 style="color: #002855;">Excelencia Académica</h3>
+                    <p style="color: #888; font-size: 14px;">Titulación por promedio alto</p>
+                </div>
+                <div class="card-back">
+                    <h4 style="color: #800000;">Detalles</h4>
+                    <p style="font-size: 14px; line-height: 1.5;">Exención de la modalidad de examen de grado para estudiantes con promedios destacados y sin reprobaciones durante la carrera.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="modalidad-card-container" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front">
+                    <div style="font-size: 70px; margin-bottom: 15px;">🌍</div>
+                    <h3 style="color: #002855;">Doble Titulación</h3>
+                    <p style="color: #888; font-size: 14px;">Convenios internacionales</p>
+                </div>
+                <div class="card-back">
+                    <h4 style="color: #800000;">Detalles</h4>
+                    <p style="font-size: 14px; line-height: 1.5;">Obtención de dos títulos simultáneos gracias a convenios con universidades extranjeras o programas integrados.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="modalidad-card-container" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front">
+                    <div style="font-size: 70px; margin-bottom: 15px;">💼</div>
+                    <h3 style="color: #002855;">Trabajo Dirigido</h3>
+                    <p style="color: #888; font-size: 14px;">Experiencia institucional</p>
+                </div>
+                <div class="card-back">
+                    <h4 style="color: #800000;">Detalles</h4>
+                    <p style="font-size: 14px; line-height: 1.5;">Consiste en la realización de un trabajo práctico en una institución externa bajo supervisión académica y técnica.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function flipCard(card) {
+        // Buscamos si hay otra carta abierta y la cerramos
+        const allFlipped = document.querySelectorAll('.card-inner.is-flipped');
+        allFlipped.forEach(c => {
+            if (c !== card.querySelector('.card-inner')) {
+                c.classList.remove('is-flipped');
+            }
+        });
+
+        // Giramos la carta actual
+        card.querySelector('.card-inner').classList.toggle('is-flipped');
+    }
+</script>>
+
+<footer style="background-color: #002855; color: white; padding: 30px 0 15px 0; margin-top: 30px; font-family: 'Segoe UI', sans-serif; border-top: 4px solid #800000;">
+    <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; padding: 0 20px; gap: 30px;">
+        
+        <div style="flex: 1; min-width: 250px; text-align: center;">
+            <h3 style="color: #ffffff; margin: 0 0 10px 0; font-size: 18px; font-weight: bold;">LAEL - UMSS</h3>
+            <p style="color: #bdc3c7; font-size: 13px; line-height: 1.4; margin: 0;">
+                Excelencia académica en la formación de profesionales en lenguas.
+            </p>
+        </div>
+
+        <div style="flex: 1; min-width: 200px; text-align: center;">
+            <h4 style="color: #ffffff; margin: 0 0 10px 0; font-size: 15px;">Enlaces</h4>
+            <div style="display: flex; flex-direction: column; gap: 5px; font-size: 13px;">
+                <a href="index.html" style="color: #bdc3c7; text-decoration: none;">Inicio</a>
+                <a href="carrera.html" style="color: #bdc3c7; text-decoration: none;">Carrera</a>
+                <a href="servicios.html" style="color: #bdc3c7; text-decoration: none;">Servicios</a>
+                <a href="contacto.html" style="color: #bdc3c7; text-decoration: none;">Contacto</a>
+            </div>
+        </div>
+
+        <div style="flex: 1; min-width: 250px; text-align: center;">
+            <h4 style="color: #ffffff; margin: 0 0 10px 0; font-size: 15px;">Información</h4>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                <div style="color: #bdc3c7; font-size: 13px;">
+                    <span style="color: #800000;">📍</span> Plazuela Sucre, Humanidades
+                </div>
+                <div style="color: #bdc3c7; font-size: 13px;">
+                    <span style="color: #800000;">📞</span> (+591) 4 4544102
+                </div>
+                <a href="https://www.facebook.com/groups/610772039133959/" target="_blank" style="text-decoration: none; display: flex; align-items: center; gap: 5px; color: #bdc3c7; font-size: 13px;">
+                    <span style="background: #1877F2; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; border-radius: 3px; font-size: 9px; color: white;">f</span> Facebook
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; padding-top: 10px; text-align: center;">
+        <p style="color: #666; font-size: 11px; margin: 0;">
+            &copy; 2026 UNIVERSIDAD MAYOR DE SAN SIMÓN.
+        </p>
+    </div>
+</footer>
+<!-- Load the widget -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/biel-search/dist/biel-search/biel-search.css">
+<script type="module" src="https://cdn.jsdelivr.net/npm/biel-search/dist/biel-search/biel-search.esm.js"></script>
+
+<!-- Add the widget -->
+<biel-button
+    project="g9bu49iac3"
+    header-title="Biel.ai Chatbot"
+    button-position="bottom-right"
+    modal-position="sidebar-right"
+    button-style="dark">
+    Ask AI
+</biel-button>
+</body>
+</html>
