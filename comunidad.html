@@ -112,6 +112,7 @@ a:hover {
     </div>
 </div>
 <style>
+    /* Tu estilo del menú para que no se mueva */
     .menu-item a {
         color: white;
         text-decoration: none;
@@ -122,10 +123,58 @@ a:hover {
         font-weight: bold;
         transition: 0.3s;
     }
-    .menu-item a:hover {
-        background-color: #800000;
+    .menu-item a:hover { background-color: #800000; }
+
+    /* EL EFECTO LUPA PARA LAS SECCIONES Y AUTORIDADES */
+    .efecto-lupa {
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease !important;
     }
-    html { scroll-behavior: smooth; }
+    .efecto-lupa:hover {
+        transform: scale(1.05) !important;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
+        z-index: 5;
+    }
 </style>
+
+<div class="container" style="padding: 50px 20px; font-family: 'Segoe UI', sans-serif; max-width: 1200px; margin: 0 auto;">
+    
+    <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 60px;">
+        <div class="efecto-lupa" style="flex: 1; min-width: 300px; background: #f9f9f9; padding: 40px; border-radius: 20px; border-top: 5px solid #002855; text-align: center;">
+            <div style="font-size: 40px; margin-bottom: 15px;">🎯</div>
+            <h2 style="color: #002855; margin-bottom: 15px;">Misión</h2>
+            <p style="color: #555; line-height: 1.6;">Formar profesionales e investigadores de excelencia en el área de la lingüística, con compromiso social y alta capacidad crítica.</p>
+        </div>
+
+        <div class="efecto-lupa" style="flex: 1; min-width: 300px; background: #f9f9f9; padding: 40px; border-radius: 20px; border-top: 5px solid #800000; text-align: center;">
+            <div style="font-size: 40px; margin-bottom: 15px;">👁️‍🗨️</div>
+            <h2 style="color: #002855; margin-bottom: 15px;">Visión</h2>
+            <p style="color: #555; line-height: 1.6;">Ser la carrera referente a nivel nacional en estudios del lenguaje, impulsando la diversidad lingüística y cultural de nuestra región.</p>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 40px;">
+        <h2 style="color: #002855; font-size: 32px;">Nuestras Autoridades</h2>
+        <div style="width: 60px; height: 4px; background: #800000; margin: 10px auto;"></div>
+    </div>
+
+    <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+        <div class="efecto-lupa" style="width: 280px; text-align: center; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <div style="width: 150px; height: 150px; background: #ddd; border-radius: 50%; margin: 0 auto 20px; overflow: hidden; border: 4px solid #002855;">
+                <img src="foto-director.jpg" alt="Director" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h4 style="color: #333; margin-bottom: 5px;">Nombre del Director</h4>
+            <p style="color: #800000; font-weight: bold; font-size: 14px;">Director de Carrera</p>
+        </div>
+
+        <div class="efecto-lupa" style="width: 280px; text-align: center; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <div style="width: 150px; height: 150px; background: #ddd; border-radius: 50%; margin: 0 auto 20px; overflow: hidden; border: 4px solid #002855;">
+                <img src="foto-secretario.jpg" alt="Autoridad" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h4 style="color: #333; margin-bottom: 5px;">Nombre de la Autoridad</h4>
+            <p style="color: #800000; font-weight: bold; font-size: 14px;">Secretario Académico</p>
+        </div>
+    </div>
+
+</div>
 <header>
 </header>
