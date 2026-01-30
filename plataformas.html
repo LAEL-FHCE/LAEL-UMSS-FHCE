@@ -89,6 +89,7 @@
      
 </div>
 <style>
+    /* Estilos del menú (Intactos) */
     .menu-item a {
         color: white;
         text-decoration: none;
@@ -101,10 +102,31 @@
     }
     .menu-item a:hover {
         background-color: #800000;
-    
     }
     html { scroll-behavior: smooth; }
+
+    /* Efecto Lupa para Plataformas */
+    .plataforma-card {
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease !important;
+    }
+    .plataforma-card:hover {
+        transform: scale(1.05) !important; /* Un poco más sutil por ser cuadrícula */
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2) !important;
+        z-index: 10;
+        position: relative;
+    }
+    
+    /* Efecto hover para los botones de "Ir al sitio" */
+    .btn-plataforma {
+        transition: 0.3s ease;
+    }
+    .btn-plataforma:hover {
+        background-color: #333;
+        color: white !important;
+        border-color: #333 !important;
+    }
 </style>
+
 <header>
 </header>
 
@@ -115,83 +137,91 @@
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; padding: 10px;">
 
-        <div style="background: white; border-left: 6px solid #002855; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; text-align: left; transition: 0.3s;">
+        <div class="plataforma-card" style="background: white; border-left: 6px solid #002855; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; text-align: left;">
             <div style="font-size: 35px; margin-bottom: 15px;">🖥️</div>
             <h3 style="color: #333; margin-bottom: 10px;">WebSISS</h3>
             <p style="color: #777; font-size: 14px; margin-bottom: 25px; min-height: 60px;">Sistema de información académica para inscripciones, consulta de notas y seguimiento curricular.</p>
-            <a href="https://websis.umss.edu.bo/" target="_blank" style="text-decoration: none; color: #002855; font-weight: bold; font-size: 14px; border: 2px solid #002855; padding: 10px 20px; border-radius: 6px; display: inline-block;">Ir al sitio →</a>
+            <a href="https://websis.umss.edu.bo/" target="_blank" class="btn-plataforma" style="text-decoration: none; color: #002855; font-weight: bold; font-size: 14px; border: 2px solid #002855; padding: 10px 20px; border-radius: 6px; display: inline-block;">Ir al sitio →</a>
         </div>
 
-        <div style="background: white; border-left: 6px solid #007bff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; text-align: left;">
+        <div class="plataforma-card" style="background: white; border-left: 6px solid #007bff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; text-align: left;">
             <div style="font-size: 35px; margin-bottom: 15px;">🎓</div>
             <h3 style="color: #333; margin-bottom: 10px;">Plataforma de Servicios a Estudiantes</h3>
-            <p style="color: #777; font-size: 14px; margin-bottom: 25px; min-height: 60px;">Portal de la Facultad de Humanidades con información sobre trámites, becas y avisos estudiantiles.</p>
-            <a href="https://www.hum.umss.edu.bo/estudiantes/" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; font-size: 14px; border: 2px solid #007bff; padding: 10px 20px; border-radius: 6px; display: inline-block;">Ir al sitio →</a>
+            <p style="color: #777; font-size: 14px; margin-bottom: 25px; min-height: 60px;">Portal de la Facultad de Humanidades con información sobre trámites, becas y avisos.</p>
+            <a href="https://www.hum.umss.edu.bo/estudiantes/" target="_blank" class="btn-plataforma" style="text-decoration: none; color: #007bff; font-weight: bold; font-size: 14px; border: 2px solid #007bff; padding: 10px 20px; border-radius: 6px; display: inline-block;">Ir al sitio →</a>
         </div>
 
-        <div style="background: white; border-left: 6px solid #f39c12; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; text-align: left;">
+        <div class="plataforma-card" style="background: white; border-left: 6px solid #f39c12; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; text-align: left;">
             <div style="font-size: 35px; margin-bottom: 15px;">📚</div>
             <h3 style="color: #333; margin-bottom: 10px;">Plataforma Moodle</h3>
             <p style="color: #777; font-size: 14px; margin-bottom: 25px; min-height: 60px;">Aula virtual oficial de Humanidades para el avance de materias, tareas y exámenes en línea.</p>
-            <a href="https://moodle.hum.umss.edu.bo/login/index.php" target="_blank" style="text-decoration: none; color: #f39c12; font-weight: bold; font-size: 14px; border: 2px solid #f39c12; padding: 10px 20px; border-radius: 6px; display: inline-block;">Ir al sitio →</a>
+            <a href="https://moodle.hum.umss.edu.bo/login/index.php" target="_blank" class="btn-plataforma" style="text-decoration: none; color: #f39c12; font-weight: bold; font-size: 14px; border: 2px solid #f39c12; padding: 10px 20px; border-radius: 6px; display: inline-block;">Ir al sitio →</a>
         </div>
 
-        <div style="background: white; border-left: 6px solid #27ae60; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; text-align: left;">
+        <div class="plataforma-card" style="background: white; border-left: 6px solid #27ae60; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; text-align: left;">
             <div style="font-size: 35px; margin-bottom: 15px;">🖱️</div>
             <h3 style="color: #333; margin-bottom: 10px;">Plataformas Educativas para Estudiantes</h3>
             <p style="color: #777; font-size: 14px; margin-bottom: 25px; min-height: 60px;">Acceso a Google Workspace, bibliotecas digitales y herramientas tecnológicas para alumnos.</p>
-            <a href="https://www.umss.edu.bo/plataformas-educativas-estudiantes/" target="_blank" style="text-decoration: none; color: #27ae60; font-weight: bold; font-size: 14px; border: 2px solid #27ae60; padding: 10px 20px; border-radius: 6px; display: inline-block;">Ir al sitio →</a>
+            <a href="https://www.umss.edu.bo/plataformas-educativas-estudiantes/" target="_blank" class="btn-plataforma" style="text-decoration: none; color: #27ae60; font-weight: bold; font-size: 14px; border: 2px solid #27ae60; padding: 10px 20px; border-radius: 6px; display: inline-block;">Ir al sitio →</a>
         </div>
 
-        <div style="background: white; border-left: 6px solid #c0392b; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; text-align: left;">
+        <div class="plataforma-card" style="background: white; border-left: 6px solid #c0392b; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; text-align: left;">
             <div style="font-size: 35px; margin-bottom: 15px;">👨‍🏫</div>
             <h3 style="color: #333; margin-bottom: 10px;">Servicio a Docentes</h3>
-            <p style="color: #777; font-size: 14px; margin-bottom: 25px; min-height: 60px;">Portal administrativo para el personal docente de la Facultad de Humanidades y Ciencias de la Educación.</p>
-            <a href="https://www.hum.umss.edu.bo/docentes/" target="_blank" style="text-decoration: none; color: #c0392b; font-weight: bold; font-size: 14px; border: 2px solid #c0392b; padding: 10px 20px; border-radius: 6px; display: inline-block;">Ir al sitio →</a>
+            <p style="color: #777; font-size: 14px; margin-bottom: 25px; min-height: 60px;">Portal administrativo para el personal docente de la Facultad de Humanidades.</p>
+            <a href="https://www.hum.umss.edu.bo/docentes/" target="_blank" class="btn-plataforma" style="text-decoration: none; color: #c0392b; font-weight: bold; font-size: 14px; border: 2px solid #c0392b; padding: 10px 20px; border-radius: 6px; display: inline-block;">Ir al sitio →</a>
         </div>
 
-        <div style="background: white; border-left: 6px solid #8e44ad; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; text-align: left;">
+        <div class="plataforma-card" style="background: white; border-left: 6px solid #8e44ad; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; text-align: left;">
             <div style="font-size: 35px; margin-bottom: 15px;">📧</div>
             <h3 style="color: #333; margin-bottom: 10px;">Plataformas Educativas y Correos para Funcionarios</h3>
-            <p style="color: #777; font-size: 14px; margin-bottom: 25px; min-height: 60px;">Acceso al correo institucional y sistemas de gestión para el personal administrativo y funcionarios.</p>
-            <a href="https://www.umss.edu.bo/plataformas-educativas-y-correos-para-funcionarios/" target="_blank" style="text-decoration: none; color: #8e44ad; font-weight: bold; font-size: 14px; border: 2px solid #8e44ad; padding: 10px 20px; border-radius: 6px; display: inline-block;">Ir al sitio →</a>
+            <p style="color: #777; font-size: 14px; margin-bottom: 25px; min-height: 60px;">Acceso al correo institucional y sistemas de gestión para el personal administrativo.</p>
+            <a href="https://www.umss.edu.bo/plataformas-educativas-y-correos-para-funcionarios/" target="_blank" class="btn-plataforma" style="text-decoration: none; color: #8e44ad; font-weight: bold; font-size: 14px; border: 2px solid #8e44ad; padding: 10px 20px; border-radius: 6px; display: inline-block;">Ir al sitio →</a>
         </div>
 
+    </div>
+   </div>
 </div>
-
-</div>
-
-</div> </div> <div style="clear: both; width: 100%; background-color: #002855; border-top: 4px solid #800000; margin-top: 50px;">
-    <footer style="max-width: 1200px; margin: 0 auto; color: white; padding: 20px; font-family: 'Segoe UI', sans-serif; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; text-align: center;">
+    <footer style="background-color: #002855; color: white; padding: 30px 0 15px 0; margin-top: 30px; font-family: 'Segoe UI', sans-serif; border-top: 4px solid #800000;">
+    <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; padding: 0 20px; gap: 30px;">
         
-        <div style="flex: 1; min-width: 250px; margin: 10px 0;">
-            <h3 style="margin: 0 0 5px 0; font-size: 17px; font-weight: bold;">LAEL - UMSS</h3>
-            <p style="color: #bdc3c7; font-size: 12px; line-height: 1.4; margin: 0;">Excelencia académica en la formación de profesionales en lenguas.</p>
+        <div style="flex: 1; min-width: 250px; text-align: center;">
+            <h3 style="color: #ffffff; margin: 0 0 10px 0; font-size: 18px; font-weight: bold;">LAEL - UMSS</h3>
+            <p style="color: #bdc3c7; font-size: 13px; line-height: 1.4; margin: 0;">
+                Excelencia académica en la formación de profesionales en lenguas.
+            </p>
         </div>
 
-        <div style="flex: 1; min-width: 150px; margin: 10px 0;">
-            <h4 style="margin: 0 0 10px 0; font-size: 15px; color: #ffffff;">Enlaces</h4>
+        <div style="flex: 1; min-width: 200px; text-align: center;">
+            <h4 style="color: #ffffff; margin: 0 0 10px 0; font-size: 15px;">Enlaces</h4>
             <div style="display: flex; flex-direction: column; gap: 5px; font-size: 13px;">
                 <a href="index.html" style="color: #bdc3c7; text-decoration: none;">Inicio</a>
-                <a href="carrera.html" style="color: #bdc3c7; text-decoration: none;">La Carrera</a>
+                <a href="carrera.html" style="color: #bdc3c7; text-decoration: none;">Carrera</a>
                 <a href="servicios.html" style="color: #bdc3c7; text-decoration: none;">Servicios</a>
                 <a href="contacto.html" style="color: #bdc3c7; text-decoration: none;">Contacto</a>
             </div>
         </div>
 
-        <div style="flex: 1; min-width: 200px; margin: 10px 0;">
-            <h4 style="margin: 0 0 10px 0; font-size: 15px;">Información</h4>
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; color: #bdc3c7; font-size: 12px;">
-                <span>📍 Plazuela Sucre, Humanidades</span>
-                <span>📞 (+591) 4 4544102</span>
-                <a href="https://www.facebook.com/groups/610772039133959/" target="_blank" style="background: #1877F2; color: white; padding: 4px 12px; border-radius: 4px; text-decoration: none; font-size: 11px; display: flex; align-items: center; gap: 5px; margin-top: 5px;">
-                    <span style="font-weight: bold;">f</span> Facebook
+        <div style="flex: 1; min-width: 250px; text-align: center;">
+            <h4 style="color: #ffffff; margin: 0 0 10px 0; font-size: 15px;">Información</h4>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                <div style="color: #bdc3c7; font-size: 13px;">
+                    <span style="color: #800000;">📍</span> Plazuela Sucre, Humanidades
+                </div>
+                <div style="color: #bdc3c7; font-size: 13px;">
+                    <span style="color: #800000;">📞</span> (+591) 4 4544102
+                </div>
+                <a href="https://www.facebook.com/groups/610772039133959/" target="_blank" style="text-decoration: none; display: flex; align-items: center; gap: 5px; color: #bdc3c7; font-size: 13px;">
+                    <span style="background: #1877F2; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; border-radius: 3px; font-size: 9px; color: white;">f</span> Facebook
                 </a>
             </div>
         </div>
+    </div>
 
-        <div style="width: 100%; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; padding-top: 15px;">
-            <p style="color: #888; font-size: 10px; margin: 0;">© 2026 UNIVERSIDAD MAYOR DE SAN SIMÓN</p>
-        </div>
-    </footer>
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; padding-top: 10px; text-align: center;">
+        <p style="color: #666; font-size: 11px; margin: 0;">
+            &copy; 2026 UNIVERSIDAD MAYOR DE SAN SIMÓN.
+        </p>
+    </div>
+</footer>
 </div>
