@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Académico | Mi Carrera</title>
+    <style>
+        /* Estilos Elegantes y Profesionales */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f4f7f9; color: #333; }
+        header { background: #003366; color: white; padding: 2rem; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        nav { background: #002244; padding: 10px; text-align: center; position: sticky; top: 0; z-index: 1000; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 20px; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-left: 5px solid #003366; margin-bottom: 20px; }
+        h2 { color: #003366; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .welcome-section { display: flex; align-items: center; gap: 20px; }
+        .btn-ia { background: #007bff; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; display: inline-block; transition: 0.3s; margin-top: 15px; }
+        .btn-ia:hover { background: #0056b3; transform: scale(1.05); }
+        footer { text-align: center; padding: 40px; color: #777; font-size: 0.8rem; }
+    /* Estilo para el contenedor del menú */
+    .menu-item {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Estilo para la lista desplegable (oculta por defecto) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #002855; /* Mismo azul que el menú */
+        min-width: 200px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    /* Estilo de los enlaces dentro del desplegable */
+    .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 13px;
+    }
+
+    /* Cambio de color al pasar el mouse por las opciones */
+    .dropdown-content a:hover {
+        background-color: #004080;
+    }
+
+    /* MOSTRAR el menú al pasar el mouse */
+    .menu-item:hover .dropdown-content {
+        display: block;
+    }
+    /* EFECTO DE ELEVACIÓN PARA TODAS LAS TARJETAS */
+.tarjeta-animada {
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    cursor: pointer;
+}
+
+.tarjeta-animada:hover {
+    transform: translateY(-10px); /* Se eleva 10 píxeles */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2) !important; /* Sombra más profunda */
+}
+
+/* EFECTO PARA LOS BOTONES */
+a:hover {
+    filter: brightness(1.2); /* Brilla un poco al pasar el mouse */
+    transition: 0.3s;
+}
+    </style>
+</head>
+<body>
+<div id="inicio-top" style="background: white; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center;">
+    <img src="LAELLOGO.PNG.png" alt="Logo LAEL" style="height: 60px;">
+
+</div>
+
+<nav style="background: #002855; padding: 0 50px; display: flex; justify-content: center; position: sticky; top: 0; z-index: 1000;">
+   <ul style="list-style: none; display: flex; margin: 0; padding: 0; gap: 20px;">
+    <li class="menu-item"><a href="index.html" style="color: white; text-decoration: none; font-weight: 600;">Inicio</a></li>
+    <li class="menu-item"><a href="carrera.html" style="color: white; text-decoration: none; font-weight: 600;">Carrera</a></li>
+    <li class="menu-item"><a href="pregrado.html" style="color: white; text-decoration: none; font-weight: 600;">Pregrado</a></li>
+    <li class="menu-item"><a href="https://posgrado.hum.umss.edu.bo/" target="_blank" style="color: white; text-decoration: none; font-weight: 600;">Posgrado</a></li>
+    <li class="menu-item"><a href="servicios.html" style="color: white; text-decoration: none; font-weight: 600;">Servicios Carrera</a></li>
+    <li class="menu-item"><a href="plataformas.html" style="color: white; text-decoration: none; font-weight: 600;">Plataformas</a></li>
+    <li class="menu-item"><a href="comunidad.html" style="color: white; text-decoration: none; font-weight: 600;">Comunidad</a></li>
+    <li class="menu-item"><a href="contacto.html" style="color: white; text-decoration: none; font-weight: 600;">Contacto</a></li>
+</ul>
+</nav>
+<div style="
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+    url(logo2.jpg); 
+    background-size: cover; 
+    background-position: center; 
+    height: 400px; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    color: white; 
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+">
+    <h1 style="font-size: 30px; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">
+        LINGÜÍSTICA APLICADA A LA ENSEÑANZA DE LENGUAS
+    </h1>
+    
+    <div style="margin-top: 25px;">
+        <a href="#carrera" style="padding: 12px 30px; background: #002855; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; border: 2px solid white; transition: 0.3s;">
+            Explorar Carrera
+        </a>
+    </div>
+</div>
+<style>
+    .menu-item a {
+        color: white;
+        text-decoration: none;
+        padding: 15px 20px;
+        display: block;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .menu-item a:hover {
+        background-color: #800000;
+    }
+    html { scroll-behavior: smooth; }
+</style>
+<header>
+</header>
