@@ -177,7 +177,46 @@
         .category-card:hover .action-link::after {
             transform: translateX(5px);
         }
+/* Animación para que las cosas desaparezcan/aparezcan suave */
+.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
+    pointer-events: none;
+}
 
+.fade-in {
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilo para las herramientas dentro de la One-Page */
+.content-area {
+    margin-top: 30px;
+}
+
+.tool-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.tool-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #e1e8ed;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.tool-card h4 {
+    margin: 0 0 10px 0;
+    color: var(--umss-azul);
+}
     </style>
 </head>
 <body>
@@ -199,41 +238,104 @@
     </header>
 
     <div class="container">
-        <div class="welcome-box">
-            <h1>Hola, <span id="welcomeName" style="color: var(--umss-guinda);">...</span></h1>
-            <p>Panel de recursos exclusivos para la carrera.</p>
+    <div id="portalHeader" class="welcome-box">
+        <h1 id="mainTitle">Hola, <span id="welcomeName" style="color: var(--umss-guinda);">Estudiante</span></h1>
+        <p id="mainSubtitle">Panel de recursos exclusivos para la carrera.</p>
+        <button id="btnVolver" onclick="mostrarDashboard()" style="display:none; margin-top:10px; cursor:pointer; background:none; border:1px solid var(--umss-azul); color:var(--umss-azul); padding:5px 15px; border-radius:20px; font-weight:bold;">← Volver al Menú</button>
+    </div>
+
+    <div id="dashboardGrid" class="dashboard-grid">
+        <div class="category-card" onclick="verSeccion('carrera', 'Herramientas de Carrera', '📚')">
+            <div class="icon-wrapper">📚</div>
+            <h3>Herramientas de Carrera</h3>
+            <p>Mallas y reglamentos oficiales.</p>
         </div>
 
-        <div class="dashboard-grid">
-            <a href="#" class="category-card">
-                <div class="icon-wrapper">📚</div>
-                <h3>Herramientas de Carrera</h3>
-                <p>Mallas curriculares actualizadas, reglamentos de titulación y documentos oficiales para tu formación académica.</p>
-                <span class="action-link">Explorar recursos</span>
-            </a>
+        <div class="category-card tech" onclick="verSeccion('tecnologia', 'Hub Tecnológico', '💻')">
+            <div class="icon-wrapper">💻</div>
+            <h3>Herramientas de Tecnología</h3>
+            <p>Escáner IA, resúmenes y software.</p>
+        </div>
 
-            <a href="#" class="category-card tech">
-                <div class="icon-wrapper">💻</div>
-                <h3>Herramientas de Tecnología</h3>
-                <p>Software especializado en lingüística, guías de inteligencia artificial y acceso a plataformas digitales.</p>
-                <span class="action-link">Ver herramientas</span>
-            </a>
-
-            <a href="#" class="category-card news">
-                <div class="icon-wrapper">📢</div>
-                <h3>Novedades</h3>
-                <p>Infórmate sobre las últimas becas, eventos, seminarios y avisos importantes de la comunidad universitaria.</p>
-                <span class="action-link">Ver avisos</span>
-            </a>
+        <div class="category-card news" onclick="verSeccion('novedades', 'Novedades y Avisos', '📢')">
+            <div class="icon-wrapper">📢</div>
+            <h3>Novedades</h3>
+            <p>Becas, eventos y comunicados.</p>
         </div>
     </div>
 
+    <div id="contentArea" class="content-area" style="display:none;">
+        
+        <div id="sec-tecnologia" class="section-detail" style="display:none;">
+            <div class="tool-layout">
+                <div class="tool-card">
+                    <h4>📸 Escáner e IA</h4>
+                    <p>Convierte fotos en PDF y genera resúmenes.</p>
+                    <button class="action-link" style="border:none; background:none; cursor:pointer;">Configurar herramienta</button>
+                </div>
+                <div class="tool-card">
+                    <h4>🔍 Corpus Digital</h4>
+                    <p>Acceso a base de datos lingüísticos.</p>
+                    <button class="action-link" style="border:none; background:none; cursor:pointer;">Explorar</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="sec-carrera" class="section-detail" style="display:none;">
+            <p>Contenido de Carrera cargando...</p>
+        </div>
+        <div id="sec-novedades" class="section-detail" style="display:none;">
+            <p>Contenido de Novedades cargando...</p>
+        </div>
+
+    </div>
+</div>
     <script>
         // Lógica para personalizar el saludo
         const nombreGuardado = localStorage.getItem('nombreEstudiante') || 'Estudiante';
         document.getElementById('userName').innerText = nombreGuardado;
         document.getElementById('welcomeName').innerText = nombreGuardado;
         document.getElementById('avatarLetter').innerText = nombreGuardado.charAt(0).toUpperCase();
+        function verSeccion(id, titulo, icono) {
+    // 1. Esconder el Dashboard con animación
+    const grid = document.getElementById('dashboardGrid');
+    grid.classList.add('fade-out');
+    
+    setTimeout(() => {
+        grid.style.display = 'none';
+        
+        // 2. Cambiar el título y mostrar botón volver
+        document.getElementById('mainTitle').innerHTML = `${icono} ${titulo}`;
+        document.getElementById('mainSubtitle').innerText = "Recursos disponibles en esta categoría.";
+        document.getElementById('btnVolver').style.display = 'inline-block';
+
+        // 3. Mostrar el área de contenido y la sección específica
+        const area = document.getElementById('contentArea');
+        area.style.display = 'block';
+        area.classList.add('fade-in');
+
+        // Esconder todas las sub-secciones primero
+        document.querySelectorAll('.section-detail').forEach(s => s.style.display = 'none');
+        // Mostrar la que elegimos
+        document.getElementById('sec-' + id).style.display = 'block';
+    }, 400);
+}
+
+function mostrarDashboard() {
+    // Proceso inverso: Esconder contenido y mostrar tarjetas
+    document.getElementById('contentArea').style.display = 'none';
+    document.getElementById('btnVolver').style.display = 'none';
+    
+    const grid = document.getElementById('dashboardGrid');
+    grid.style.display = 'grid';
+    grid.classList.remove('fade-out');
+    grid.classList.add('fade-in');
+
+    // Restaurar título original
+    const nombre = localStorage.getItem('nombreEstudiante') || 'Estudiante';
+    document.getElementById('mainTitle').innerHTML = `Hola, <span style="color: var(--umss-guinda);">${nombre}</span>`;
+    document.getElementById('mainSubtitle').innerText = "Panel de recursos exclusivos para la carrera.";
+}
     </script>
 </body>
 </html>
