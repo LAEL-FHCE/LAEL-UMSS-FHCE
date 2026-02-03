@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Seguro | UMSS</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', sans-serif; 
+            background: #f0f2f5; 
+            height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .login-box {
+            background: white; 
+            padding: 40px; 
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center; 
+            width: 350px;
+            border-top: 6px solid #800000; /* Guinda UMSS */
+        }
+        .logo-carrera { height: 60px; margin-bottom: 20px; }
+        h2 { color: #002855; margin-bottom: 10px; font-weight: 600; }
+        p { color: #555; font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
+        
+        #error-msg {
+            color: #d93025; 
+            background: #fce8e6; 
+            padding: 10px; 
+            border-radius: 5px; 
+            font-size: 13px; 
+            display: none; 
+            margin-top: 20px;
+        }
+
+        .btn-volver {
+            display: inline-block;
+            margin-top: 25px;
+            color: #002855;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .btn-volver:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="login-box">
+    <img src="LAELLOGO.PNG.png" alt="Logo Carrera" class="logo-carrera">
+    
+    <h2>Portal Estudiantil</h2>
+    <p>Inicia sesión con tu cuenta institucional para acceder al contenido exclusivo.</p>
+
+    <div id="g_id_onload"
+     data-client_id="667344074823-k264c808n8ruh3gdkl1lrpqs8serde7k.apps.googleusercontent.com"
+     data-callback="handleCredentialResponse"
+     data-context="signin"
+     data-auto_prompt="false">
+</div>
+
+    <div style="display: flex; justify-content: center;">
+        <div class="g_id_signin" 
+             data-type="standard" 
+             data-size="large" 
+             data-theme="outline" 
+             data-text="signin_with" 
+             data-shape="rectangular" 
+             data-logo_alignment="left">
+        </div>
+    </div>
+
+    <div id="error-msg">
+        ⚠️ <b>Acceso Denegado:</b> Solo se permiten cuentas @est.umss.edu
+    </div>
+
+    <a href="comunidad.html" class="btn-volver">← Volver a Comunidad</a>
+</div>
+
+<script>
+    // Esta función se ejecuta automáticamente cuando Google valida al usuario
+    function handleCredentialResponse(response) {
+        // Decodificamos el "token" que nos envía Google para ver el correo
+        const base64Url = response.credential.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        const user = JSON.parse(jsonPayload);
+        const email = user.email;
+
+        // VALIDACIÓN DE SEGURIDAD
+        if (email.endsWith('@est.umss.edu')) {
+            // Guardamos el nombre para saludarlo en la siguiente página (opcional)
+            localStorage.setItem('nombreEstudiante', user.given_name);
+            // REDIRIGIMOS AL PORTAL INTERNO
+            window.location.href = "portal-estudiantes.html";
+        } else {
+            // Mostramos el error si usa Gmail personal
+            document.getElementById('error-msg').style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
