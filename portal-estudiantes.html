@@ -217,6 +217,55 @@
     margin: 0 0 10px 0;
     color: var(--umss-azul);
 }
+/* ESTILOS ESPECÍFICOS PARA EL HUB TECNOLÓGICO */
+.tool-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.tool-card {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    border: 1px solid #e0e6ed;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    border-color: var(--umss-azul);
+}
+
+.tool-card h4 {
+    color: var(--umss-azul);
+    margin: 15px 0 10px;
+    font-size: 1.2em;
+}
+
+.tool-card p {
+    color: #666;
+    font-size: 0.9em;
+    line-height: 1.5;
+    flex-grow: 1; /* Hace que el párrafo ocupe el espacio disponible */
+}
+
+/* Estilo para los paneles de herramientas individuales */
+.herramienta-panel {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border: 1px solid #e0e6ed;
+}
     </style>
 </head>
 <body>
@@ -267,63 +316,403 @@
     <div id="contentArea" class="content-area" style="display:none;">
         
         <div id="sec-tecnologia" class="section-detail" style="display:none;">
-           <p>Contenido de Tecnologia cargando...</p>
-        </div>
-        <div id="sec-carrera" class="section-detail" style="display:none;">
-            <p>Contenido de Carrera cargando...</p>
-        </div>
-        <div id="sec-novedades" class="section-detail" style="display:none;">
-            <p>Contenido de Novedades cargando...</p>
+    <h2 style="color:var(--umss-azul); text-align:center; margin-bottom:30px;">Explora el Hub Tecnológico LAEL</h2>
+    
+    <div class="tool-layout">
+        
+        <div class="tool-card zoom-effect" onclick="verHerramienta('mis-clases')">
+            <span style="font-size: 40px;">👨‍🏫</span>
+            <h4 style="color:var(--umss-guinda);">Mis Clases y Apuntes</h4>
+            <p>Organiza tus materias, sube tus apuntes o archivos y prepáralos para la IA.</p>
         </div>
 
+        <div class="tool-card zoom-effect" onclick="verHerramienta('citas-apa')">
+            <span style="font-size: 40px;">📚</span>
+            <h4>Referencias APA</h4>
+            <p>Genera citas bibliográficas perfectas en formato APA 7ma edición para tus trabajos.</p>
+        </div>
+
+        <div class="tool-card zoom-effect" onclick="verHerramienta('corrector')">
+            <span style="font-size: 40px;">✍️</span>
+            <h4>Corrector de Estilo</h4>
+            <p>Mejora la redacción, claridad y tono de tus ensayos académicos con IA.</p>
+        </div>
+
+        <div class="tool-card zoom-effect" onclick="verHerramienta('datos')">
+            <span style="font-size: 40px;">🔎</span>
+            <h4>Buscador de Datos</h4>
+            <p>Encuentra conjuntos de datos lingüísticos y archivos reales para investigación.</p>
+        </div>
+        
+        <div class="tool-card zoom-effect" onclick="verHerramienta('notebook')">
+            <span style="font-size: 40px;">🧠</span>
+            <h4>IA NotebookLM</h4>
+            <p>Crea resúmenes, guías de estudio y chatea con tus documentos procesados.</p>
+        </div>
+
+        <div class="tool-card zoom-effect" onclick="verHerramienta('analisis')">
+            <span style="font-size: 40px;">📊</span>
+            <h4>Análisis de Corpus</h4>
+            <p>Herramientas para análisis léxico, concordancias y estudio del lenguaje.</p>
+        </div>
+    </div>
+
+    <div id="herramienta-content" style="display:none; margin-top: 20px;">
+        <button onclick="volverAlHub()" style="background:#f0f2f5; border:none; color:var(--umss-azul); font-weight:bold; cursor:pointer; margin-bottom:20px; padding:10px 20px; border-radius:10px;">
+            ← Volver al Hub Tecnológico
+        </button>
+
+        <div id="mis-clases-panel" class="herramienta-panel" style="display:none;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h3 style="color:var(--umss-guinda); margin:0;">📚 Mis Clases y Apuntes</h3>
+        <button id="btnNuevaMateria" onclick="crearMateria()" style="background:var(--umss-azul); color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold;">+ Añadir Materia</button>
+    </div>
+
+    <div id="lista-materias" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:15px;">
+        <p id="msg-vacio" style="color:#999; grid-column: 1/-1; text-align:center;">Aún no tienes materias. ¡Haz clic en el botón para añadir la primera!</p>
+    </div>
+
+    <div id="espacio-materia" style="display:none; margin-top:20px; border-top:2px solid #eee; padding-top:20px;">
+        <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
+          <button id="btnRetrocederMateria" onclick="retrocederNivel()" style="border:none; padding:8px 15px; border-radius:8px; cursor:pointer; font-weight:bold; background:#eee; margin-bottom:10px;">← Volver</button>
+            <h3 id="nombre-materia-activa" style="color:var(--umss-azul); margin:0;"></h3>
+        </div>
+
+        <div style="background:#f0f7ff; border:2px dashed var(--umss-azul); padding:20px; border-radius:15px; text-align:center; margin-bottom:20px;">
+            <p style="margin-bottom:10px; font-weight:bold;">Añadir material a esta materia:</p>
+            <input type="file" id="inputArchivoMateria" multiple style="display:none;" onchange="procesarArchivosMateria(this.files)">
+            <div style="display:flex; justify-content:center; gap:10px;">
+                <button onclick="document.getElementById('inputArchivoMateria').click()" style="background:white; border:1px solid var(--umss-azul); padding:10px; border-radius:8px; cursor:pointer;">📸 Subir Fotos / PDF</button>
+                <button onclick="subirAudio()" style="background:white; border:1px solid var(--umss-guinda); padding:10px; border-radius:8px; cursor:pointer;">🎙️ Subir Audio</button>
+            </div>
+        </div>
+
+        <div id="lista-archivos-materia" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap:10px;"></div>
+
+        <div id="acciones-procesamiento" style="display:none; margin-top:30px; padding:20px; background:#fff; border-radius:15px; border:1px solid #ddd; text-align:center;">
+            <h4 style="margin-top:0;">✨ Herramientas de Procesamiento</h4>
+            <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+                <button onclick="generarPDFMateria()" style="background:var(--umss-azul); color:white; border:none; padding:12px; border-radius:10px; cursor:pointer; font-weight:bold;">📦 Convertir a PDF para NotebookLM</button>
+                <button onclick="transcribirTexto()" style="background:#4caf50; color:white; border:none; padding:12px; border-radius:10px; cursor:pointer; font-weight:bold;">📝 Transcribir Fotos a Texto</button>
+            </div>
+        </div>
     </div>
 </div>
-    <script>
-        // Lógica para personalizar el saludo
-        const nombreGuardado = localStorage.getItem('nombreEstudiante') || 'Estudiante';
-        document.getElementById('userName').innerText = nombreGuardado;
-        document.getElementById('welcomeName').innerText = nombreGuardado;
-        document.getElementById('avatarLetter').innerText = nombreGuardado.charAt(0).toUpperCase();
-        function verSeccion(id, titulo, icono) {
-    // 1. Esconder el Dashboard con animación
+</div>
+            </div>
+        </div>
+
+        <div id="citas-apa-panel" class="herramienta-panel" style="display:none;">
+            <h3>📚 Generador de Citas APA</h3>
+            <p>Usa esta herramienta externa para gestionar tus bibliografías de forma gratuita y profesional.</p>
+            <a href="https://zbib.org/" target="_blank" class="btn-link" style="display:inline-block; background:var(--umss-azul); color:white; padding:12px 25px; border-radius:8px; text-decoration:none;">Abrir ZoteroBib</a>
+        </div>
+
+        <div id="corrector-panel" class="herramienta-panel" style="display:none;">
+            <h3>✍️ Corrector de Estilo</h3>
+            <p>Pulsa el botón para mejorar la gramática y el estilo de tus textos académicos.</p>
+            <a href="https://www.deepl.com/write" target="_blank" style="display:inline-block; background:var(--umss-azul); color:white; padding:12px 25px; border-radius:8px; text-decoration:none;">Abrir DeepL Write</a>
+        </div>
+
+        <div id="datos-panel" class="herramienta-panel" style="display:none;"><h3>🔎 Buscador de Datos</h3><a href="https://datasetsearch.research.google.com/" target="_blank">Ir a Google Dataset Search</a></div>
+        <div id="notebook-panel" class="herramienta-panel" style="display:none;"><h3>🧠 NotebookLM</h3><a href="https://notebooklm.google.com/" target="_blank">Ir a NotebookLM</a></div>
+        <div id="analisis-panel" class="herramienta-panel" style="display:none;"><h3>📊 Análisis Lingüístico</h3><a href="https://www.laurenceanthony.net/software/antconc/" target="_blank">Ver Info de AntConc</a></div>
+    </div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script>
+// 1. Configuración de Identidad
+const nombreGuardado = localStorage.getItem('nombreEstudiante') || 'Estudiante';
+document.getElementById('userName').innerText = nombreGuardado;
+document.getElementById('welcomeName').innerText = nombreGuardado;
+document.getElementById('avatarLetter').innerText = nombreGuardado.charAt(0).toUpperCase();
+
+// ============================================================
+// BASE DE DATOS Y PERSISTENCIA
+// ============================================================
+let materiaActual = "";
+let claseActual = "";
+let dbLAEL = JSON.parse(localStorage.getItem('dbLAEL')) || {};
+
+function guardarDB() {
+    localStorage.setItem('dbLAEL', JSON.stringify(dbLAEL));
+}
+
+window.addEventListener('load', () => {
+    cargarMaterias();
+});
+
+// ============================================================
+// NAVEGACIÓN DEL PORTAL
+// ============================================================
+
+// ESTA FUNCIÓN ES LA QUE LLAMA TU BOTÓN DE LA LÍNEA 377
+function retrocederNivel() {
+    if (claseActual !== "") {
+        // Si estamos viendo fotos, regresamos a la lista de temas
+        dibujarClases();
+    } else {
+        // Si estamos en la lista de temas, regresamos al Hub de tecnología
+        volverAlHub();
+    }
+}
+
+function verSeccion(id, titulo, icono) {
     const grid = document.getElementById('dashboardGrid');
     grid.classList.add('fade-out');
     
     setTimeout(() => {
         grid.style.display = 'none';
-        
-        // 2. Cambiar el título y mostrar botón volver
         document.getElementById('mainTitle').innerHTML = `${icono} ${titulo}`;
-        document.getElementById('mainSubtitle').innerText = "Recursos disponibles en esta categoría.";
         document.getElementById('btnVolver').style.display = 'inline-block';
 
-        // 3. Mostrar el área de contenido y la sección específica
         const area = document.getElementById('contentArea');
-        area.style.display = 'block';
+        area.style.display = 'block'; 
+        area.classList.remove('fade-out');
         area.classList.add('fade-in');
 
-        // Esconder todas las sub-secciones primero
         document.querySelectorAll('.section-detail').forEach(s => s.style.display = 'none');
-        // Mostrar la que elegimos
-        document.getElementById('sec-' + id).style.display = 'block';
+        const seccionActiva = document.getElementById('sec-' + id);
+        if(seccionActiva) seccionActiva.style.display = 'block';
+        
+        if(id === 'tecnologia') {
+            volverAlHub(); 
+        }
     }, 400);
 }
 
 function mostrarDashboard() {
-    // Proceso inverso: Esconder contenido y mostrar tarjetas
+    volverAlHub();
     document.getElementById('contentArea').style.display = 'none';
     document.getElementById('btnVolver').style.display = 'none';
     
-    const grid = document.getElementById('dashboardGrid');
-    grid.style.display = 'grid';
-    grid.classList.remove('fade-out');
-    grid.classList.add('fade-in');
+    const dashboard = document.getElementById('dashboardGrid');
+    dashboard.style.display = 'grid';
+    dashboard.classList.remove('fade-out');
+    dashboard.classList.add('fade-in');
 
-    // Restaurar título original
-    const nombre = localStorage.getItem('nombreEstudiante') || 'Estudiante';
-    document.getElementById('mainTitle').innerHTML = `Hola, <span style="color: var(--umss-guinda);">${nombre}</span>`;
+    document.getElementById('mainTitle').innerHTML = `Hola, <span style="color: var(--umss-guinda);">${nombreGuardado}</span>`;
     document.getElementById('mainSubtitle').innerText = "Panel de recursos exclusivos para la carrera.";
 }
-    </script>
+
+function volverAlHub() {
+    document.getElementById('herramienta-content').style.display = 'none';
+    document.getElementById('espacio-materia').style.display = 'none';
+    document.querySelectorAll('.herramienta-panel').forEach(p => p.style.display = 'none');
+
+    const layout = document.querySelector('.tool-layout');
+    if(layout) layout.style.display = 'grid';
+
+    const listaMat = document.getElementById('lista-materias');
+    if(listaMat) {
+        listaMat.style.display = 'grid';
+        cargarMaterias(); 
+    }
+    const btnNueva = document.getElementById('btnNuevaMateria');
+    if(btnNueva) btnNueva.style.display = 'block';
+
+    claseActual = "";
+    materiaActual = "";
+}
+
+function verHerramienta(idHerramienta) {
+    const layout = document.querySelector('.tool-layout');
+    if(layout) layout.style.display = 'none';
+    
+    const hContent = document.getElementById('herramienta-content');
+    if(hContent) hContent.style.display = 'block';
+
+    document.querySelectorAll('.herramienta-panel').forEach(panel => {
+        panel.style.display = 'none';
+    });
+    const panelActivo = document.getElementById(idHerramienta + '-panel');
+    if(panelActivo) panelActivo.style.display = 'block';
+}
+
+// ============================================================
+// ORGANIZADOR: MATERIAS Y CLASES
+// ============================================================
+function crearMateria() {
+    const nombre = prompt("Nombre de la materia (ej. Lingüística):");
+    if (!nombre) return;
+    if (!dbLAEL[nombre]) {
+        dbLAEL[nombre] = {};
+        guardarDB();
+        cargarMaterias();
+    } else {
+        alert("Esta materia ya existe.");
+    }
+}
+
+function cargarMaterias() {
+    const lista = document.getElementById('lista-materias');
+    if(!lista) return;
+    lista.innerHTML = "";
+    const materias = Object.keys(dbLAEL);
+    
+    if (materias.length === 0) {
+        lista.innerHTML = '<p id="msg-vacio" style="color:#999; grid-column: 1/-1; text-align:center;">Aún no tienes materias.</p>';
+        return;
+    }
+
+    materias.forEach(m => {
+        const carpeta = document.createElement('div');
+        carpeta.className = "tool-card zoom-effect";
+        carpeta.style = "background:white; padding:20px; border-radius:12px; border:1px solid #ddd; text-align:center; cursor:pointer; position:relative;";
+        carpeta.innerHTML = `
+            <div style="font-size:45px; margin-bottom:10px;">📁</div>
+            <strong style="color:var(--umss-azul);">${m}</strong>
+            <button onclick="eliminarMateria(event, '${m}')" style="position:absolute; top:8px; right:8px; background:none; border:none; color:#ddd; cursor:pointer;">&times;</button>
+        `;
+        carpeta.onclick = () => abrirMateria(m);
+        lista.appendChild(carpeta);
+    });
+}
+
+function eliminarMateria(e, m) {
+    e.stopPropagation();
+    if(confirm(`¿Eliminar ${m}?`)) {
+        delete dbLAEL[m];
+        guardarDB();
+        cargarMaterias();
+    }
+}
+
+function abrirMateria(nombre) {
+    materiaActual = nombre;
+    document.getElementById('lista-materias').style.display = 'none';
+    document.getElementById('btnNuevaMateria').style.display = 'none';
+    document.getElementById('espacio-materia').style.display = 'block';
+    document.getElementById('nombre-materia-activa').innerText = "Materia: " + nombre;
+    dibujarClases();
+}
+
+function dibujarClases() {
+    claseActual = ""; 
+    const contenedor = document.getElementById('lista-archivos-materia');
+    contenedor.innerHTML = `
+        <div onclick="crearClase()" style="border:2px dashed #003366; padding:20px; border-radius:12px; text-align:center; cursor:pointer; color:#003366; background:#f0f7ff; grid-column: 1/-1;">
+            <div style="font-size:30px;">📅</div>
+            <strong>+ Nueva Clase o Tema</strong>
+        </div>
+    `;
+    
+    const clases = Object.keys(dbLAEL[materiaActual] || {});
+    clases.forEach(c => {
+        const div = document.createElement('div');
+        div.className = "tool-card zoom-effect";
+        div.style = "background:#fff; padding:15px; border-radius:12px; border:1px solid #eee; cursor:pointer; text-align:center;";
+        div.innerHTML = `<div style="font-size:30px;">📖</div><strong style="font-size:12px;">${c}</strong>`;
+        div.onclick = () => abrirClase(c);
+        contenedor.appendChild(div);
+    });
+    document.getElementById('acciones-procesamiento').style.display = 'none';
+}
+
+function crearClase() {
+    const tema = prompt("Nombre del tema o fecha:");
+    if (!tema) return;
+    if (!dbLAEL[materiaActual][tema]) {
+        dbLAEL[materiaActual][tema] = [];
+        guardarDB();
+        dibujarClases();
+    }
+}
+
+function abrirClase(id) {
+    claseActual = id;
+    const contenedor = document.getElementById('lista-archivos-materia');
+    // He quitado el botón rojo para que uses el tuyo de arriba (Línea 377)
+    contenedor.innerHTML = `
+        <h4 style="grid-column:1/-1; margin:0 0 10px 0; color:var(--umss-azul);">Tema: ${id}</h4>
+        <div id="galeria-fotos" style="grid-column:1/-1; display:grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap:15px; margin-top:10px;"></div>
+    `;
+
+    actualizarGaleria();
+    document.getElementById('acciones-procesamiento').style.display = 'block';
+}
+
+function actualizarGaleria() {
+    const galeria = document.getElementById('galeria-fotos');
+    if(!galeria) return;
+    galeria.innerHTML = "";
+    
+    const archivos = dbLAEL[materiaActual][claseActual] || [];
+    archivos.forEach((fileData, index) => {
+        const div = document.createElement('div');
+        div.style = "position:relative; background:#fff; border-radius:8px; overflow:hidden; height:120px; border:1px solid #ddd; box-shadow:0 2px 4px rgba(0,0,0,0.1);";
+        div.innerHTML = `
+            <img src="${fileData.base64}" style="width:100%; height:100%; object-fit:cover;">
+            <button onclick="eliminarArchivo(${index})" style="position:absolute; top:4px; right:4px; background:rgba(128,0,0,0.8); color:white; border:none; border-radius:50%; width:22px; height:22px; cursor:pointer; font-size:14px; font-weight:bold;">&times;</button>
+        `;
+        galeria.appendChild(div);
+    });
+}
+
+function procesarArchivosMateria(files) {
+    if (!claseActual) return;
+    
+    const arrayFiles = Array.from(files);
+    let procesados = 0;
+
+    arrayFiles.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            dbLAEL[materiaActual][claseActual].push({
+                name: file.name,
+                type: file.type,
+                base64: e.target.result
+            });
+            procesados++;
+            if(procesados === arrayFiles.length) {
+                guardarDB();
+                actualizarGaleria();
+                // Reset del input para permitir nuevas subidas
+                document.getElementById('file-input-materia').value = ""; 
+            }
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+function eliminarArchivo(index) {
+    if(confirm("¿Eliminar este apunte?")) {
+        dbLAEL[materiaActual][claseActual].splice(index, 1);
+        guardarDB();
+        actualizarGaleria();
+    }
+}
+
+async function generarPDFMateria() {
+    const archivos = dbLAEL[materiaActual][claseActual];
+    if (!archivos || archivos.length === 0) {
+        alert("No hay fotos para convertir en este tema.");
+        return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    alert("Generando PDF... Una vez descargado, te redirigiremos a NotebookLM.");
+
+    archivos.forEach((img, i) => {
+        if (i > 0) doc.addPage();
+        // Ajustamos la imagen al tamaño A4
+        doc.addImage(img.base64, 'JPEG', 0, 0, 210, 297);
+    });
+
+    // 1. Descargamos el archivo
+    const nombreArchivo = `Apuntes_${materiaActual}_${claseActual.split('|')[0].trim()}.pdf`;
+    doc.save(nombreArchivo);
+
+    // 2. Abrimos NotebookLM en una nueva pestaña después de un breve delay
+    // para asegurar que la descarga comenzó
+    setTimeout(() => {
+        window.open("https://notebooklm.google.com/", "_blank");
+    }, 1500);
+}
+</script>
 </body>
 </html>
