@@ -266,6 +266,10 @@
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     border: 1px solid #e0e6ed;
 }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
     </style>
 </head>
 <body>
@@ -642,10 +646,13 @@ function actualizarGaleria() {
     const archivos = dbLAEL[materiaActual][claseActual] || [];
     archivos.forEach((fileData, index) => {
         const div = document.createElement('div');
-        div.style = "position:relative; background:#fff; border-radius:8px; overflow:hidden; height:120px; border:1px solid #ddd; box-shadow:0 2px 4px rgba(0,0,0,0.1);";
+        div.style = "position:relative; background:#fff; border-radius:8px; overflow:hidden; height:150px; border:1px solid #ddd; box-shadow:0 2px 4px rgba(0,0,0,0.1); display:flex; flex-direction:column;";
         div.innerHTML = `
-            <img src="${fileData.base64}" style="width:100%; height:100%; object-fit:cover;">
-            <button onclick="eliminarArchivo(${index})" style="position:absolute; top:4px; right:4px; background:rgba(128,0,0,0.8); color:white; border:none; border-radius:50%; width:22px; height:22px; cursor:pointer; font-size:14px; font-weight:bold;">&times;</button>
+            <img src="${fileData.base64}" style="width:100%; height:100px; object-fit:cover;">
+            <div style="display:flex; gap:2px; padding:4px;">
+                <button onclick="extraerTexto(${index})" style="flex:1; font-size:10px; padding:4px; background:var(--umss-azul); color:white; border:none; border-radius:4px; cursor:pointer;">🔍 Leer Texto</button>
+                <button onclick="eliminarArchivo(${index})" style="background:rgba(128,0,0,0.8); color:white; border:none; border-radius:4px; width:25px; cursor:pointer;">&times;</button>
+            </div>
         `;
         galeria.appendChild(div);
     });
@@ -712,6 +719,56 @@ async function generarPDFMateria() {
     setTimeout(() => {
         window.open("https://notebooklm.google.com/", "_blank");
     }, 1500);
+}
+async function extraerTexto(index) {
+    const foto = dbLAEL[materiaActual][claseActual][index];
+    
+    // 1. Mostrar aviso de carga estilizado
+    const aviso = document.createElement('div');
+    aviso.id = "loader-ocr";
+    aviso.style = "position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:25px; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.3); z-index:10000; text-align:center; border:2px solid #003366;";
+    aviso.innerHTML = `
+        <div style="border:4px solid #f3f3f3; border-top:4px solid #003366; border-radius:50%; width:40px; height:40px; animation: spin 1s linear infinite; margin: 0 auto 15px;"></div>
+        <p style="font-weight:bold; color:#333; margin:0;">IA Analizando imagen...</p>
+        <p style="font-size:12px; color:gray; margin-top:5px;">Esto puede tardar unos segundos.</p>
+    `;
+    document.body.appendChild(aviso);
+
+    try {
+        // 2. Usar un Worker (es más estable para evitar errores de procesamiento)
+        const worker = await Tesseract.createWorker('spa'); 
+        const { data: { text } } = await worker.recognize(foto.base64);
+        await worker.terminate();
+
+        document.getElementById('loader-ocr').remove();
+
+        if (!text || text.trim().length < 2) {
+            alert("No se detectó texto claro. Intenta con una foto más nítida.");
+        } else {
+            mostrarResultadoOCR(text);
+        }
+    } catch (error) {
+        console.error("Error OCR:", error);
+        if(document.getElementById('loader-ocr')) document.getElementById('loader-ocr').remove();
+        alert("Hubo un error al procesar la imagen. Verifica tu conexión a internet.");
+    }
+}
+
+// Función adicional para la ventana de resultados
+function mostrarResultadoOCR(texto) {
+    const modal = document.createElement('div');
+    modal.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:20000; display:flex; align-items:center; justify-content:center; padding:20px;";
+    modal.innerHTML = `
+        <div style="background:white; padding:25px; border-radius:15px; width:100%; max-width:600px; max-height:80vh; overflow-y:auto; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+            <h3 style="margin-top:0; color:#003366;">✨ Texto Detectado</h3>
+            <textarea id="txtOCR" style="width:100%; height:200px; padding:15px; border-radius:10px; border:1px solid #ddd; font-family: inherit; line-height:1.5;">${texto}</textarea>
+            <div style="margin-top:15px; display:flex; gap:10px;">
+                <button onclick="navigator.clipboard.writeText(document.getElementById('txtOCR').value).then(() => alert('¡Copiado!'))" style="flex:1; padding:12px; background:#003366; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">Copiar Texto</button>
+                <button onclick="this.parentElement.parentElement.parentElement.remove()" style="flex:1; padding:12px; background:#eee; color:#333; border:none; border-radius:8px; cursor:pointer;">Cerrar</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
 }
 </script>
 </body>
