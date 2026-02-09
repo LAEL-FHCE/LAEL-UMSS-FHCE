@@ -318,6 +318,56 @@
     </div>
 
     <div id="contentArea" class="content-area" style="display:none;">
+        <div id="sec-novedades" class="section-detail" style="display:none;">
+    <h2 style="color:var(--umss-azul); text-align:center; margin-bottom:30px;">Comunicados y Novedades</h2>
+    
+    <div id="grid-novedades" class="tool-layout" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+        
+    <div class="tool-card" 
+     onclick="verDetalleNovedad('beca-china', 'CONVOCATORIA: CURSOS Y BECAS DE IDIOMA CHINO 2026', 'Feb 9, 2026', 'chinoimagen.pdf')" 
+     style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-align: center; cursor: pointer; border-top: 5px solid #e67e22; transition: transform 0.2s;">
+    
+    <div style="font-size: 30px; margin-bottom: 10px;">🏮</div>
+    <h4 style="color: var(--umss-azul); text-transform: uppercase; font-size: 14px; line-height: 1.4;">Convocatoria: Cursos y Becas de Idioma Chino 2026</h4>
+    <p style="color: #777; font-size: 12px; margin: 12px 0;">Consulta los requisitos, fechas de examen HSK y beneficios de la beca.</p>
+    
+    <div style="border-top: 1px solid #eee; pt-10px; margin-top: 15px; display: flex; justify-content: center; gap: 10px; align-items: center;">
+        <span style="font-size: 11px; color: #888;">Feb 9, 2026</span>
+        <span style="background: #fff3e0; color: #e67e22; font-size: 10px; padding: 3px 10px; border-radius: 20px; font-weight: bold; text-transform: uppercase;">Comunicado</span>
+    </div>
+</div>
+
+        <div class="tool-card" onclick="verDetalleNovedad('calendario-academico', 'CALENDARIO ACADÉMICO 1-2026', 'Ene 10, 2026', 'calendario_lael_2026.pdf')" style="background: white; border-radius: 10px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; cursor: pointer;">
+            <h4 style="color: var(--umss-azul); text-transform: uppercase; font-size: 14px;">Calendario Académico 1-2026</h4>
+            <p style="color: #888; font-size: 12px; margin: 10px 0;">Comunicado...</p>
+            <p style="font-size: 11px; color: #555;">Ene 10, 2026 | <span style="color: #e67e22; font-weight: bold;">Comunicado</span></p>
+        </div>
+
+        </div>
+
+    <div id="detalle-novedad-panel" style="display:none; background: #f9f9f9; padding: 30px; border-radius: 15px;">
+        <button onclick="volverGridNovedades()" style="cursor:pointer; background:#eee; border:none; padding:8px 15px; border-radius:8px; margin-bottom:20px; font-weight:bold;">← Volver a Novedades</button>
+        
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+            <h2 id="nov-titulo" style="color: var(--umss-azul); max-width: 70%; text-transform: uppercase;"></h2>
+            <div style="background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); text-align: right;">
+                <p id="nov-fecha" style="font-size: 11px; color: #555; margin: 0;"></p>
+                <span style="background: #ffe0b2; color: #e67e22; font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: bold;">Comunicado</span>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <p style="font-weight: bold; color: #333; margin-bottom: 15px;">📄 Documentos</p>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; background: #f1f1f1; padding: 10px 15px; border-radius: 8px; margin-bottom: 15px;">
+                <span id="nov-archivo-nombre" style="font-size: 13px; color: #555;"></span>
+                <a id="nov-btn-descargar" href="#" download style="background: #3498db; color: white; text-decoration: none; padding: 5px 15px; border-radius: 5px; font-size: 12px; font-weight: bold;">📥 Descargar</a>
+            </div>
+
+            <iframe id="nov-visor-pdf" src="" style="width: 100%; height: 600px; border: none; border-radius: 5px;"></iframe>
+        </div>
+    </div>
+</div>
         <div id="sec-carrera" class="section-detail" style="display:none;">
     <h2 style="color:var(--umss-azul); text-align:center; margin-bottom:30px;">Recursos de la Carrera LAEL</h2>
     
@@ -873,6 +923,29 @@ function mostrarResultadoOCR(texto) {
         </div>
     `;
     document.body.appendChild(modal);
+}
+function verDetalleNovedad(id, titulo, fecha, archivo) {
+    // Ocultar la grilla de tarjetas
+    document.getElementById('grid-novedades').style.display = 'none';
+    
+    // Llenar los datos en el panel de detalle
+    document.getElementById('nov-titulo').innerText = titulo;
+    document.getElementById('nov-fecha').innerText = fecha;
+    document.getElementById('nov-archivo-nombre').innerText = archivo;
+    document.getElementById('nov-btn-descargar').href = archivo;
+    document.getElementById('nov-visor-pdf').src = archivo;
+
+    // Mostrar el panel de detalle
+    document.getElementById('detalle-novedad-panel').style.display = 'block';
+}
+
+function volverGridNovedades() {
+    // Ocultar el panel de detalle
+    document.getElementById('detalle-novedad-panel').style.display = 'none';
+    // Limpiar el visor PDF para que no consuma recursos
+    document.getElementById('nov-visor-pdf').src = "";
+    // Mostrar la grilla de tarjetas
+    document.getElementById('grid-novedades').style.display = 'grid';
 }
 </script>
 </body>
