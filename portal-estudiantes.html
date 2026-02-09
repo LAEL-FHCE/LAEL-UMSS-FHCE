@@ -866,15 +866,32 @@ function actualizarGaleria() {
 
 function procesarArchivosMateria(files) {
     if (!claseActual) return;
-    Array.from(files).forEach(file => {
+    
+    const arrayFiles = Array.from(files);
+    let procesados = 0;
+
+    arrayFiles.forEach(file => {
         const reader = new FileReader();
         reader.onload = (e) => {
+            // 1. Guardamos en el array de la clase actual
             dbLAEL[materiaActual][claseActual].push({
                 name: file.name,
+                type: file.type,
                 base64: e.target.result
             });
-            guardarDB();
-            actualizarGaleria();
+            
+            procesados++;
+
+            // 2. Solo cuando TODOS los archivos se hayan leído...
+            if(procesados === arrayFiles.length) {
+                guardarDB();         // Guardamos en LocalStorage
+                actualizarGaleria(); // <--- ESTA LÍNEA ES LA MAGIA: Dibuja la foto al instante
+                
+                // Limpiamos el input para que puedas subir la misma foto si quieres
+                document.getElementById('file-input-materia').value = ""; 
+                
+                console.log("Galería actualizada al instante");
+            }
         };
         reader.readAsDataURL(file);
     });
