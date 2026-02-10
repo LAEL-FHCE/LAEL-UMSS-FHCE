@@ -1,0 +1,51 @@
+/* FUERZA BRUTA PARA DISEÑO MÓVIL */
+@media (max-width: 768px) {
+    /* 1. Reset total: nada puede medir 1000px en un celular */
+    * {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        left: 0 !important;
+        float: none !important;
+    }
+
+    body {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow-x: hidden !important; /* Evita que la página se mueva a los lados */
+    }
+
+    /* 2. El contenedor principal (el que mide 1000px) */
+    .container, #container, div[style*="width: 1000px"], .welcome-section {
+        width: 100vw !important; /* Ocupa el ancho de la ventana */
+        padding: 15px !important;
+        display: block !important;
+    }
+
+    /* 3. Títulos y letras (para que no ocupen media página) */
+    h1, h2, h3, p {
+        width: 100% !important;
+        text-align: center !important;
+        word-wrap: break-word !important; /* Corta palabras largas */
+    }
+
+    /* 4. Forzar que las secciones aparezcan una debajo de otra */
+    .tool-layout, .grid-container, #grid-novedades {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+
+    /* 5. Los logos del inicio */
+    #inicio-top {
+        flex-direction: column !important;
+        align-items: center !important;
+        height: auto !important;
+    }
+    
+    #inicio-top img {
+        width: 70% !important;
+        margin-bottom: 15px !important;
+    }
+}
