@@ -598,7 +598,7 @@
             <h5 style="margin: 10px 0 5px 0;">Equipos y Periféricos</h5>
             <p style="font-size: 13px; color: #666;">Proyectores, cables HDMI, punteros y adaptadores.</p>
             <hr style="margin: 10px 0; border: 0.5px solid #f5f5f5;">
-            <button onclick="alert('Solicitando reserva...')" style="width: 100%; padding: 8px; background: var(--umss-guinda); color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px;">Reservar para Clase</button>
+           <button onclick="abrirEquipos()" style="width: 100%; padding: 8px; background: var(--umss-guinda); color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight:bold;">Reservar para Clase</button>
         </div>
 
     </div>
@@ -735,6 +735,54 @@
             <button onclick="solicitarReserva()" style="width:100%; padding:12px; background:var(--umss-azul); color:white; border:none; border-radius:10px; cursor:pointer; font-weight:bold;">
                 🗓️ Solicitar Cupo
             </button>
+        </div>
+    </div>
+</div>
+<div id="modal-equipos" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center; backdrop-filter: blur(4px);">
+    <div style="background:white; padding:25px; border-radius:20px; width:95%; max-width:500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 15px 35px rgba(0,0,0,0.4); position:relative; font-family: sans-serif;">
+        <button onclick="cerrarEquipos()" style="position:absolute; top:15px; right:15px; border:none; background:#eee; border-radius:50%; width:30px; height:30px; cursor:pointer;">✕</button>
+        
+        <h3 style="color:#800000; text-align:center; margin-bottom:5px;">🔌 Préstamo de Equipos</h3>
+        <p style="font-size: 12px; color: #666; text-align: center; margin-bottom: 20px;">Selecciona el equipo que necesitas:</p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
+            <div onclick="seleccionarEquipo(this, 'Proyector')" style="cursor:pointer; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; transition: 0.3s;">
+                <span style="font-size:24px;">📽️</span><p style="font-size:10px; margin:5px 0 0 0;">Proyector</p>
+            </div>
+            <div onclick="seleccionarEquipo(this, 'Cable HDMI')" style="cursor:pointer; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; transition: 0.3s;">
+                <span style="font-size:24px;">🔌</span><p style="font-size:10px; margin:5px 0 0 0;">Cable HDMI</p>
+            </div>
+            <div onclick="seleccionarEquipo(this, 'Mouse')" style="cursor:pointer; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; transition: 0.3s;">
+                <span style="font-size:24px;">🖱️</span><p style="font-size:10px; margin:5px 0 0 0;">Mouse</p>
+            </div>
+            <div onclick="seleccionarEquipo(this, 'Auriculares')" style="cursor:pointer; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; transition: 0.3s;">
+                <span style="font-size:24px;">🎧</span><p style="font-size:10px; margin:5px 0 0 0;">Auriculares</p>
+            </div>
+            <div onclick="seleccionarEquipo(this, 'Extensor')" style="cursor:pointer; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; transition: 0.3s;">
+                <span style="font-size:24px;">🔋</span><p style="font-size:10px; margin:5px 0 0 0;">Extensor</p>
+            </div>
+            <div onclick="seleccionarEquipo(this, 'Adaptador')" style="cursor:pointer; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; transition: 0.3s;">
+                <span style="font-size:24px;">🔌</span><p style="font-size:10px; margin:5px 0 0 0;">Adaptador</p>
+            </div>
+        </div>
+
+        <div id="form-tiempo-equipo" style="border-top: 1px solid #eee; padding-top: 15px;">
+            <input type="hidden" id="equipo-seleccionado">
+            <label style="display:block; font-size:13px; font-weight:bold; margin-bottom:5px;">Fecha:</label>
+            <input type="date" id="fecha-equipo" style="width:100%; padding:8px; border-radius:5px; border:1px solid #ddd; margin-bottom:10px;">
+            
+            <div style="display:flex; gap:10px;">
+                <div style="flex:1;">
+                    <label style="display:block; font-size:13px; font-weight:bold; margin-bottom:5px;">Desde:</label>
+                    <input type="time" id="hora-inicio-equipo" style="width:100%; padding:8px; border-radius:5px; border:1px solid #ddd;">
+                </div>
+                <div style="flex:1;">
+                    <label style="display:block; font-size:13px; font-weight:bold; margin-bottom:5px;">Hasta:</label>
+                    <input type="time" id="hora-fin-equipo" style="width:100%; padding:8px; border-radius:5px; border:1px solid #ddd;">
+                </div>
+            </div>
+            
+            <button onclick="solicitarEquipo()" style="width:100%; margin-top:20px; padding:12px; background:#800000; color:white; border:none; border-radius:10px; cursor:pointer; font-weight:bold;">✅ Reservar Equipo</button>
         </div>
     </div>
 </div>
@@ -1152,6 +1200,40 @@ function solicitarReserva() {
     console.log("Creando evento en calendario para:", fecha, hora);
     
     cerrarReservaPC();
+}
+let equipoActual = "";
+
+function abrirEquipos() {
+    document.getElementById('modal-equipos').style.display = 'flex';
+}
+
+function cerrarEquipos() {
+    document.getElementById('modal-equipos').style.display = 'none';
+}
+
+function seleccionarEquipo(elemento, nombre) {
+    // Limpiar selecciones anteriores
+    const opciones = elemento.parentElement.children;
+    for(let opt of opciones) { opt.style.background = "white"; opt.style.borderColor = "#ddd"; }
+    
+    // Marcar el seleccionado
+    elemento.style.background = "#fff5f5";
+    elemento.style.borderColor = "#800000";
+    equipoActual = nombre;
+}
+
+function solicitarEquipo() {
+    const fecha = document.getElementById('fecha-equipo').value;
+    const inicio = document.getElementById('hora-inicio-equipo').value;
+    const fin = document.getElementById('hora-fin-equipo').value;
+
+    if (!equipoActual || !fecha || !inicio || !fin) {
+        alert("Por favor, selecciona un equipo y el horario completo.");
+        return;
+    }
+
+    alert(`🚀 Solicitud de Préstamo Exitosa:\n\nEquipo: ${equipoActual}\nFecha: ${fecha}\nHorario: ${inicio} a ${fin}\n\nSincronizando con el calendario del auxiliar...`);
+    cerrarEquipos();
 }
 </script>
 </body>
