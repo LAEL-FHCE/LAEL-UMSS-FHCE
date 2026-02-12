@@ -488,11 +488,11 @@
             <h4>Corrector de Estilo</h4>
             <p>Mejora la redacción y claridad de tus ensayos con IA.</p>
         </div>
-        <div class="tool-card zoom-effect" onclick="verHerramienta('datos')">
-            <span style="font-size: 40px;">🔎</span>
-            <h4>Buscador de Datos</h4>
-            <p>Encuentra conjuntos de datos lingüísticos para investigación.</p>
-        </div>
+        <div class="tool-card zoom-effect" onclick="verHerramienta('gabinete')">
+    <span style="font-size: 40px;">💻</span>
+    <h4 style="color:var(--umss-azul);">Gabinete de Cómputo</h4>
+    <p>Servicios técnicos, préstamos y material educativo de hardware.</p>
+</div>
         <div class="tool-card zoom-effect" onclick="verHerramienta('notebook')">
             <span style="font-size: 40px;">🧠</span>
             <h4>IA NotebookLM</h4>
@@ -550,6 +550,54 @@
         <div id="corrector-panel" class="herramienta-panel" style="display:none;"><h3>✍️ Corrector</h3></div>
         <div id="datos-panel" class="herramienta-panel" style="display:none;"><h3>🔎 Buscador de Datos</h3></div>
         <div id="analisis-panel" class="herramienta-panel" style="display:none;"><h3>📊 Análisis de Corpus</h3></div>
+    <div id="gabinete-panel" class="herramienta-panel" style="display:none;">
+    <h3 style="color:var(--umss-azul); text-align:center; margin-bottom:25px;">🏢 Gestión del Gabinete de Cómputo</h3>
+    
+    <div id="gabinete-menu" class="tool-layout">
+        <div class="tool-card zoom-effect" onclick="verSubGabinete('servicios-lista')">
+            <span style="font-size: 40px;">🛠️</span>
+            <h4>Servicios del Gabinete</h4>
+            <p>Consulta sobre impresiones, préstamos y uso de PCs.</p>
+        </div>
+
+        <div class="tool-card zoom-effect" onclick="verSubGabinete('material-biblioteca')">
+            <span style="font-size: 40px;">📖</span>
+            <h4>Material Educativo Tecnológico</h4>
+            <p>Biblioteca de videotutoriales y guías técnicas.</p>
+        </div>
+    </div>
+
+    <div id="servicios-lista" style="display:none; padding:20px; background:white; border-radius:15px; border:1px solid #eee;">
+        <button onclick="volverMenuGabinete()" style="cursor:pointer; background:#eee; border:none; padding:5px 15px; border-radius:10px; margin-bottom:15px;">← Volver</button>
+        <h4 style="color:var(--umss-guinda);">🛠️ Nuestros Servicios</h4>
+        <ul style="line-height: 2; font-size: 1.1em; color: #444;">
+            <li>🖨️ <b>Fotocopia e Impresión:</b> Blanco y negro / Color.</li>
+            <li>🖥️ <b>Uso de Computadoras:</b> Acceso libre para investigación.</li>
+            <li>💿 <b>Grabado de CD:</b> Soporte para copias de seguridad.</li>
+            <li>🔌 <b>Préstamo de Material:</b> Cables HDMI, Proyectores y Punteros.</li>
+        </ul>
+    </div>
+
+    <div id="material-biblioteca" style="display:none; padding:20px; background:white; border-radius:15px; border:1px solid #eee;">
+    <button onclick="volverMenuGabinete()" style="cursor:pointer; background:#eee; border:none; padding:8px 15px; border-radius:10px; margin-bottom:15px; font-weight:bold;">← Volver al Menú Gabinete</button>
+    
+    <h4 style="color:var(--tech-blue); text-align:center; margin-bottom:20px;">📖 Biblioteca de Tutoriales LAEL</h4>
+    
+    <div style="max-width: 800px; margin: 0 auto;">
+        <div class="tool-card" style="padding:20px; border-top: 5px solid #ff0000; background:#fdfdfd;">
+            <h5 style="margin-bottom: 15px; font-size: 1.2em; color: var(--umss-azul);">🎥 Video: Cómo cambiar la Pasta Térmica</h5>
+            
+            <video width="100%" controls style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); background: #000;">
+                <source src="tutorial-pasta.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
+
+            <div style="margin-top: 20px; padding: 15px; background: #f1f4f9; border-radius: 10px;">
+                <p style="font-size: 14px; color: #444; line-height: 1.5; margin: 0;">
+                    <b>Instrucciones:</b> Sigue este paso a paso para realizar el mantenimiento preventivo de las laptops del gabinete.
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -966,6 +1014,22 @@ function volverGridNovedades() {
     document.getElementById('nov-visor-pdf').src = "";
     // Mostrar la grilla de tarjetas
     document.getElementById('grid-novedades').style.display = 'grid';
+}
+// Función para entrar a las subsecciones del gabinete
+function verSubGabinete(idSub) {
+    // Oculta el menú de los dos cuadros
+    document.getElementById('gabinete-menu').style.display = 'none';
+    // Muestra la sección elegida (servicios o material)
+    document.getElementById(idSub).style.display = 'block';
+}
+
+// Función para volver al menú principal del gabinete
+function volverMenuGabinete() {
+    // Oculta las subsecciones
+    document.getElementById('servicios-lista').style.display = 'none';
+    document.getElementById('material-biblioteca').style.display = 'none';
+    // Muestra el menú de los dos cuadros
+    document.getElementById('gabinete-menu').style.display = 'grid';
 }
 </script>
 </body>
