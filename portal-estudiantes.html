@@ -488,11 +488,11 @@
             <h4>Corrector de Estilo</h4>
             <p>Mejora la redacción y claridad de tus ensayos con IA.</p>
         </div>
-        <div class="tool-card zoom-effect" onclick="verHerramienta('datos')">
-            <span style="font-size: 40px;">🔎</span>
-            <h4>Buscador de Datos</h4>
-            <p>Encuentra conjuntos de datos lingüísticos para investigación.</p>
-        </div>
+        <div class="tool-card zoom-effect" onclick="verHerramienta('gabinete')">
+    <span style="font-size: 40px;">💻</span>
+    <h4 style="color:var(--umss-azul);">Gabinete de Cómputo</h4>
+    <p>Servicios técnicos, préstamos y material educativo de hardware.</p>
+</div>
         <div class="tool-card zoom-effect" onclick="verHerramienta('notebook')">
             <span style="font-size: 40px;">🧠</span>
             <h4>IA NotebookLM</h4>
@@ -550,6 +550,79 @@
         <div id="corrector-panel" class="herramienta-panel" style="display:none;"><h3>✍️ Corrector</h3></div>
         <div id="datos-panel" class="herramienta-panel" style="display:none;"><h3>🔎 Buscador de Datos</h3></div>
         <div id="analisis-panel" class="herramienta-panel" style="display:none;"><h3>📊 Análisis de Corpus</h3></div>
+    <div id="gabinete-panel" class="herramienta-panel" style="display:none;">
+    <h3 style="color:var(--umss-azul); text-align:center; margin-bottom:25px;">🏢 Gestión del Gabinete de Cómputo</h3>
+    
+    <div id="gabinete-menu" class="tool-layout">
+        <div class="tool-card zoom-effect" onclick="verSubGabinete('servicios-lista')">
+            <span style="font-size: 40px;">🛠️</span>
+            <h4>Servicios del Gabinete</h4>
+            <p>Consulta sobre impresiones, préstamos y uso de PCs.</p>
+        </div>
+
+        <div class="tool-card zoom-effect" onclick="verSubGabinete('material-biblioteca')">
+            <span style="font-size: 40px;">📖</span>
+            <h4>Material Educativo Tecnológico</h4>
+            <p>Biblioteca de videotutoriales y guías técnicas.</p>
+        </div>
+    </div>
+
+    <div id="servicios-lista" style="display:none; padding:20px; background:white; border-radius:15px;">
+    <button onclick="volverMenuGabinete()" style="cursor:pointer; background:#eee; border:none; padding:8px 15px; border-radius:10px; margin-bottom:20px; font-weight:bold;">← Volver</button>
+    
+    <h4 style="color:var(--umss-azul); margin-bottom:20px; border-left: 5px solid var(--umss-guinda); padding-left:10px;">🛠️ Catálogo de Servicios del Gabinete</h4>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+        
+        <div style="border: 1px solid #eee; padding: 15px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: relative;">
+            <div style="position: absolute; top: 10px; right: 10px; font-size: 12px; background: #e6fffa; color: #2d3748; padding: 2px 8px; border-radius: 10px; border: 1px solid #38b2ac;">🟢 Disponible</div>
+            <span style="font-size: 30px;">🖨️</span>
+            <h5 style="margin: 10px 0 5px 0;">Impresiones y Copias</h5>
+            <p style="font-size: 13px; color: #666;">B/N y Color. Papel bond y fotográfico disponible.</p>
+            <hr style="margin: 10px 0; border: 0.5px solid #f5f5f5;">
+            <button onclick="abrirTarifario()" style="width: 100%; padding: 8px; background: var(--umss-azul); color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight:bold;">Continuar</button>
+        </div>
+
+        <div style="border: 1px solid #eee; padding: 15px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: relative;">
+            <div style="position: absolute; top: 10px; right: 10px; font-size: 12px; background: #e6fffa; color: #2d3748; padding: 2px 8px; border-radius: 10px; border: 1px solid #38b2ac;">🟢 12 Libres</div>
+            <span style="font-size: 30px;">🖥️</span>
+            <h5 style="margin: 10px 0 5px 0;">Uso de Computadoras</h5>
+            <p style="font-size: 13px; color: #666;">Acceso a software especializado e internet de alta velocidad.</p>
+            <hr style="margin: 10px 0; border: 0.5px solid #f5f5f5;">
+           <button onclick="abrirReservaPC()" style="width: 100%; padding: 8px; border: 1px solid var(--umss-azul); background: transparent; color: var(--umss-azul); border-radius: 5px; cursor: pointer; font-size: 12px; font-weight:bold;">Normas y Reserva</button>
+        </div>
+
+        <div style="border: 1px solid #eee; padding: 15px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: relative;">
+            <div style="position: absolute; top: 10px; right: 10px; font-size: 12px; background: #fff5f5; color: #c53030; padding: 2px 8px; border-radius: 10px; border: 1px solid #feb2b2;">🔴 En uso</div>
+            <span style="font-size: 30px;">🔌</span>
+            <h5 style="margin: 10px 0 5px 0;">Equipos y Periféricos</h5>
+            <p style="font-size: 13px; color: #666;">Proyectores, cables HDMI, punteros y adaptadores.</p>
+            <hr style="margin: 10px 0; border: 0.5px solid #f5f5f5;">
+           <button onclick="abrirEquipos()" style="width: 100%; padding: 8px; background: var(--umss-guinda); color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight:bold;">Reservar para Clase</button>
+        </div>
+
+    </div>
+</div>
+    <div id="material-biblioteca" style="display:none; padding:20px; background:white; border-radius:15px; border:1px solid #eee;">
+    <button onclick="volverMenuGabinete()" style="cursor:pointer; background:#eee; border:none; padding:8px 15px; border-radius:10px; margin-bottom:15px; font-weight:bold;">← Volver al Menú Gabinete</button>
+    
+    <h4 style="color:var(--tech-blue); text-align:center; margin-bottom:20px;">📖 Biblioteca de Tutoriales LAEL</h4>
+    
+    <div style="max-width: 800px; margin: 0 auto;">
+        <div class="tool-card" style="padding:20px; border-top: 5px solid #ff0000; background:#fdfdfd;">
+            <h5 style="margin-bottom: 15px; font-size: 1.2em; color: var(--umss-azul);">🎥 Video: Cómo cambiar la Pasta Térmica</h5>
+            
+            <video width="100%" controls style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); background: #000;">
+                <source src="tutorial-pasta.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
+
+            <div style="margin-top: 20px; padding: 15px; background: #f1f4f9; border-radius: 10px;">
+                <p style="font-size: 14px; color: #444; line-height: 1.5; margin: 0;">
+                    <b>Instrucciones:</b> Sigue este paso a paso para realizar el mantenimiento preventivo de las laptops del gabinete.
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -615,6 +688,102 @@
         <div id="analisis-panel" class="herramienta-panel" style="display:none;"><h3>📊 Análisis Lingüístico</h3><a href="https://www.laurenceanthony.net/software/antconc/" target="_blank">Ver Info de AntConc</a></div>
     </div>
 </div>
+</div>
+<div id="modal-tarifario" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center; backdrop-filter: blur(4px);">
+    <div style="background:white; padding:30px; border-radius:20px; width:90%; max-width:450px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); position:relative; font-family: sans-serif;">
+        <button onclick="cerrarTarifario()" style="position:absolute; top:15px; right:15px; border:none; background:#eee; border-radius:50%; width:30px; height:30px; cursor:pointer;">✕</button>
+        
+        <h3 style="color:#003366; margin-top:0; text-align:center;">🖨️ Tarifario de Impresión</h3>
+        
+        <div style="background:#f8f9fa; padding:15px; border-radius:10px; margin: 20px 0;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                <span>📄 Impresión B/N:</span> <b>0.20 Bs.</b>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                <span>🌈 Impresión Color:</span> <b>1.00 Bs.</b>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+                <span>📑 Fotocopia:</span> <b>0.10 Bs.</b>
+            </div>
+        </div>
+
+        <form onsubmit="enviarAFotocopiadora(event)">
+            <p style="font-size: 13px; color: #666; margin-bottom:10px;"><b>Paso 2:</b> Sube tu archivo en PDF para imprimir:</p>
+            <input type="file" id="archivo-impresion" accept=".pdf" required style="width:100%; margin-bottom:20px; font-size:12px;">
+            
+            <button type="submit" style="width:100%; padding:12px; background:#800000; color:white; border:none; border-radius:10px; cursor:pointer; font-weight:bold; font-size:14px;">
+                🚀 Enviar al Gabinete
+            </button>
+        </form>
+    </div>
+</div>
+<div id="modal-reserva-pc" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center; backdrop-filter: blur(4px);">
+    <div style="background:white; padding:30px; border-radius:20px; width:90%; max-width:400px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); position:relative; font-family: sans-serif;">
+        <button onclick="cerrarReservaPC()" style="position:absolute; top:15px; right:15px; border:none; background:#eee; border-radius:50%; width:30px; height:30px; cursor:pointer;">✕</button>
+        
+        <h3 style="color:var(--umss-azul); text-align:center;">🖥️ Reservar Computadora</h3>
+        <p style="font-size: 13px; color: #666; text-align: center;">Selecciona el horario para tu sesión de trabajo.</p>
+
+        <div style="margin-top: 20px;">
+            <label style="display:block; font-size:14px; margin-bottom:5px; font-weight:bold;">Fecha:</label>
+            <input type="date" id="fecha-reserva" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd; margin-bottom:15px;">
+
+            <label style="display:block; font-size:14px; margin-bottom:5px; font-weight:bold;">Hora de inicio:</label>
+            <input type="time" id="hora-reserva" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd; margin-bottom:20px;">
+            
+            <button onclick="solicitarReserva()" style="width:100%; padding:12px; background:var(--umss-azul); color:white; border:none; border-radius:10px; cursor:pointer; font-weight:bold;">
+                🗓️ Solicitar Cupo
+            </button>
+        </div>
+    </div>
+</div>
+<div id="modal-equipos" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center; backdrop-filter: blur(4px);">
+    <div style="background:white; padding:25px; border-radius:20px; width:95%; max-width:500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 15px 35px rgba(0,0,0,0.4); position:relative; font-family: sans-serif;">
+        <button onclick="cerrarEquipos()" style="position:absolute; top:15px; right:15px; border:none; background:#eee; border-radius:50%; width:30px; height:30px; cursor:pointer;">✕</button>
+        
+        <h3 style="color:#800000; text-align:center; margin-bottom:5px;">🔌 Préstamo de Equipos</h3>
+        <p style="font-size: 12px; color: #666; text-align: center; margin-bottom: 20px;">Selecciona el equipo que necesitas:</p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
+            <div onclick="seleccionarEquipo(this, 'Proyector')" style="cursor:pointer; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; transition: 0.3s;">
+                <span style="font-size:24px;">📽️</span><p style="font-size:10px; margin:5px 0 0 0;">Proyector</p>
+            </div>
+            <div onclick="seleccionarEquipo(this, 'Cable HDMI')" style="cursor:pointer; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; transition: 0.3s;">
+                <span style="font-size:24px;">🔌</span><p style="font-size:10px; margin:5px 0 0 0;">Cable HDMI</p>
+            </div>
+            <div onclick="seleccionarEquipo(this, 'Mouse')" style="cursor:pointer; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; transition: 0.3s;">
+                <span style="font-size:24px;">🖱️</span><p style="font-size:10px; margin:5px 0 0 0;">Mouse</p>
+            </div>
+            <div onclick="seleccionarEquipo(this, 'Auriculares')" style="cursor:pointer; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; transition: 0.3s;">
+                <span style="font-size:24px;">🎧</span><p style="font-size:10px; margin:5px 0 0 0;">Auriculares</p>
+            </div>
+            <div onclick="seleccionarEquipo(this, 'Extensor')" style="cursor:pointer; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; transition: 0.3s;">
+                <span style="font-size:24px;">🔋</span><p style="font-size:10px; margin:5px 0 0 0;">Extensor</p>
+            </div>
+            <div onclick="seleccionarEquipo(this, 'Adaptador')" style="cursor:pointer; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; transition: 0.3s;">
+                <span style="font-size:24px;">🔌</span><p style="font-size:10px; margin:5px 0 0 0;">Adaptador</p>
+            </div>
+        </div>
+
+        <div id="form-tiempo-equipo" style="border-top: 1px solid #eee; padding-top: 15px;">
+            <input type="hidden" id="equipo-seleccionado">
+            <label style="display:block; font-size:13px; font-weight:bold; margin-bottom:5px;">Fecha:</label>
+            <input type="date" id="fecha-equipo" style="width:100%; padding:8px; border-radius:5px; border:1px solid #ddd; margin-bottom:10px;">
+            
+            <div style="display:flex; gap:10px;">
+                <div style="flex:1;">
+                    <label style="display:block; font-size:13px; font-weight:bold; margin-bottom:5px;">Desde:</label>
+                    <input type="time" id="hora-inicio-equipo" style="width:100%; padding:8px; border-radius:5px; border:1px solid #ddd;">
+                </div>
+                <div style="flex:1;">
+                    <label style="display:block; font-size:13px; font-weight:bold; margin-bottom:5px;">Hasta:</label>
+                    <input type="time" id="hora-fin-equipo" style="width:100%; padding:8px; border-radius:5px; border:1px solid #ddd;">
+                </div>
+            </div>
+            
+            <button onclick="solicitarEquipo()" style="width:100%; margin-top:20px; padding:12px; background:#800000; color:white; border:none; border-radius:10px; cursor:pointer; font-weight:bold;">✅ Reservar Equipo</button>
+        </div>
+    </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
@@ -966,6 +1135,104 @@ function volverGridNovedades() {
     document.getElementById('nov-visor-pdf').src = "";
     // Mostrar la grilla de tarjetas
     document.getElementById('grid-novedades').style.display = 'grid';
+}
+// Función para entrar a las subsecciones del gabinete
+function verSubGabinete(idSub) {
+    // Oculta el menú de los dos cuadros
+    document.getElementById('gabinete-menu').style.display = 'none';
+    // Muestra la sección elegida (servicios o material)
+    document.getElementById(idSub).style.display = 'block';
+}
+
+// Función para volver al menú principal del gabinete
+function volverMenuGabinete() {
+    // Oculta las subsecciones
+    document.getElementById('servicios-lista').style.display = 'none';
+    document.getElementById('material-biblioteca').style.display = 'none';
+    // Muestra el menú de los dos cuadros
+    document.getElementById('gabinete-menu').style.display = 'grid';
+}
+function abrirTarifario() {
+    document.getElementById('modal-tarifario').style.display = 'flex';
+}
+
+function cerrarTarifario() {
+    document.getElementById('modal-tarifario').style.display = 'none';
+}
+
+function enviarAFotocopiadora(event) {
+    event.preventDefault();
+    const archivoInput = document.getElementById('archivo-impresion');
+    
+    if (archivoInput.files.length > 0) {
+        alert("✅ Archivo recibido. Se abrirá tu correo para enviarlo al Gabinete.");
+        
+        const email = "gabinete.lael@umss.edu"; 
+        const subject = "Solicitud de Impresión - Portal Estudiantil";
+        const body = "Buen día, adjunto mi archivo para la impresión solicitada.";
+        
+        window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        cerrarTarifario();
+    }
+}
+function abrirReservaPC() {
+    document.getElementById('modal-reserva-pc').style.display = 'flex';
+}
+
+function cerrarReservaPC() {
+    document.getElementById('modal-reserva-pc').style.display = 'none';
+}
+
+function solicitarReserva() {
+    const fecha = document.getElementById('fecha-reserva').value;
+    const hora = document.getElementById('hora-reserva').value;
+
+    if (!fecha || !hora) {
+        alert("Por favor, selecciona fecha y hora.");
+        return;
+    }
+
+    // Simulamos la integración con Google Calendar
+    alert(`✅ ¡Solicitud enviada!\n\nSe ha agendado para el día ${fecha} a las ${hora}.\nEl auxiliar recibirá la notificación en su Google Calendar.`);
+    
+    // Aquí es donde en el futuro conectarías la API de Google
+    console.log("Creando evento en calendario para:", fecha, hora);
+    
+    cerrarReservaPC();
+}
+let equipoActual = "";
+
+function abrirEquipos() {
+    document.getElementById('modal-equipos').style.display = 'flex';
+}
+
+function cerrarEquipos() {
+    document.getElementById('modal-equipos').style.display = 'none';
+}
+
+function seleccionarEquipo(elemento, nombre) {
+    // Limpiar selecciones anteriores
+    const opciones = elemento.parentElement.children;
+    for(let opt of opciones) { opt.style.background = "white"; opt.style.borderColor = "#ddd"; }
+    
+    // Marcar el seleccionado
+    elemento.style.background = "#fff5f5";
+    elemento.style.borderColor = "#800000";
+    equipoActual = nombre;
+}
+
+function solicitarEquipo() {
+    const fecha = document.getElementById('fecha-equipo').value;
+    const inicio = document.getElementById('hora-inicio-equipo').value;
+    const fin = document.getElementById('hora-fin-equipo').value;
+
+    if (!equipoActual || !fecha || !inicio || !fin) {
+        alert("Por favor, selecciona un equipo y el horario completo.");
+        return;
+    }
+
+    alert(`🚀 Solicitud de Préstamo Exitosa:\n\nEquipo: ${equipoActual}\nFecha: ${fecha}\nHorario: ${inicio} a ${fin}\n\nSincronizando con el calendario del auxiliar...`);
+    cerrarEquipos();
 }
 </script>
 </body>
